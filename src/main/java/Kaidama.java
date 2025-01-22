@@ -2,23 +2,27 @@ import java.util.Scanner;
 
 public class Kaidama {
     public static void main(String[] args) {
+        TaskList tl = new TaskList();
         Scanner sc = new Scanner(System.in);
-        System.out.println("    ____________________________________________________________");
-        System.out.println("    Hello! I'm Kaidama.");
+
+        Response.initMsg();
+
 
         while(true) {
-            String input = sc.nextLine();
+           String input = sc.nextLine();
             if (input.equals("bye")) {
-                System.out.println("    ____________________________________________________________");
-                System.out.println("    Bye. Hope to see you again soon!");
-                System.out.println("    ____________________________________________________________");
+                Response.exitMsg();
                 sc.close();
                 break;
+            } else if (input.equals("list")) {
+                Response.getList(tl);
+            } else {
+                Task task = new Task(input);
+                tl.addTask(task);
+                Response.addNewTask(task);
             }
-            System.out.println("    ____________________________________________________________");
-            System.out.println("    " + input);
-            System.out.println("    ____________________________________________________________");
         }
+
 
     }
 }
