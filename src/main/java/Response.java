@@ -49,5 +49,13 @@ public class Response {
         System.out.println(line);
     }
 
+    public static void deleteTaskMsg(Task task, int taskCount) {
+        System.out.println(line);
+        System.out.println("    Noted. I've removed this task:");
+        System.out.println("        " + task.toString());
+        System.out.println("    Now you have " + taskCount + " task in the list");
+        System.out.println(line);
+    }
+
 
 }

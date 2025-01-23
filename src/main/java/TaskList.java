@@ -18,6 +18,9 @@ public class TaskList {
         getTask(index).setUndone();
     }
 
+    public void deleteTask(int index) {
+        tasks.remove(index - 1);
+    }
 
     public Task getTask(int index) {
         return tasks.get(index - 1);
