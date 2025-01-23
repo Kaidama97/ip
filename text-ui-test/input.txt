@@ -23,4 +23,5 @@ event project meeting /from Aug 6th 2pm /to 4pm
 event dinner with friends /from Aug 7th 6pm /to 9pm
 mark 5
 list
+delete 4
 bye
