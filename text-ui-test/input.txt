@@ -1,0 +1,15 @@
+todo borrow books
+unmark 1
+mark 1
+mark 1
+list
+deadline return books /by Sunday
+deadline buy books /by Jan 4th
+mark 2
+mark 3
+unmark 3
+list
+event project meeting /from Aug 6th 2pm /to 4pm
+event dinner with friends /from Aug 7th 6pm /to 9pm
+mark 5
+list
