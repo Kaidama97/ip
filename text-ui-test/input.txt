@@ -1,15 +1,26 @@
+mark 1
+todo
 todo borrow books
 unmark 1
+mark 2
 mark 1
-mark 1
+mark
+unmark
 list
+add new task
+deadline /by Sunday
+deadline do CS2103 ip /by
 deadline return books /by Sunday
 deadline buy books /by Jan 4th
 mark 2
 mark 3
 unmark 3
 list
+event /from monday /to friday
+event party /from  /to 4am
+event party /from 1am /to
 event project meeting /from Aug 6th 2pm /to 4pm
 event dinner with friends /from Aug 7th 6pm /to 9pm
 mark 5
 list
+bye

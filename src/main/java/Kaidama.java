@@ -70,7 +70,7 @@ public class Kaidama {
                         if(toSplit.length == 1 || toSplit[1].trim().isEmpty()) throw new KaidamaException("Please enter a end time of the event");
                         task = new Events(split[0], toSplit[0], toSplit[1]);
                     } else {
-                        throw new KaidamaException("please enter a valid input (todo, deadline or event only)");
+                        throw new KaidamaException("please enter a valid input (mark, unmark, todo, deadline or event only)");
                     }
                     tl.addTask(task);
                     Response.addNewTask(task, tl.getTaskCount());
