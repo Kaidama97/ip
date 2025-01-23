@@ -43,5 +43,11 @@ public class Response {
         System.out.println(line);
     }
 
+    public static void errorMsg(String msg) {
+        System.out.println(line);
+        System.out.println("    " + msg);
+        System.out.println(line);
+    }
+
 
 }
