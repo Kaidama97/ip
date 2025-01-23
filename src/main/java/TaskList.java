@@ -23,6 +23,10 @@ public class TaskList {
         return tasks.get(index - 1);
     }
 
+    public int getTaskCount() {
+        return tasks.size();
+    }
+
     @Override
     public String toString() {
         //StringBuilder str = new StringBuilder();

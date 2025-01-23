@@ -35,9 +35,11 @@ public class Response {
         System.out.println(line);
     }
 
-    public static void addNewTask(Task task) {
+    public static void addNewTask(Task task, int taskCount) {
         System.out.println(line);
-        System.out.println("    added: " + task.toString());
+        System.out.println("    Got it. I've added this task:");
+        System.out.println(" " + task.toString());
+        System.out.println("    Now you have " + taskCount + " task in the list");
         System.out.println(line);
     }
 
