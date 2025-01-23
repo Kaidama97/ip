@@ -1,5 +1,6 @@
 public class Response {
     private static String line = ("    ____________________________________________________________");
+
     public Response() {
 
     }
@@ -7,6 +8,7 @@ public class Response {
     public static void initMsg() {
         System.out.println("    Hello! I'm Kaidama.");
         System.out.println("    What can I do for you?");
+
     }
 
     public static void exitMsg() {
@@ -28,6 +30,7 @@ public class Response {
         System.out.println("        " + task.toString());
         System.out.println(line);
     }
+
     public static void markedMsg(Task task) {
         System.out.println(line);
         System.out.println("    Nice! I've marked this task as done:");

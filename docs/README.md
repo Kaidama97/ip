@@ -1,30 +1,33 @@
-# Duke User Guide
+# Kaidama User Guide
 
-// Update the title above to match the actual product name
+![img.png](img.png)
 
-// Product screenshot goes here
 
-// Product intro goes here
 
 ## Adding deadlines
 
-// Describe the action and its outcome.
 
-// Give examples of usage
-
-Example: `keyword (optional arguments)`
-
-// A description of the expected outcome goes here
+input: deadline  
 
 ```
-expected output
+output:
+____________________________________________________________
+Got it. I've added this task:
+[D][ ] return books (by: Sunday)
+Now you have 2 task in the list
+____________________________________________________________
 ```
 
-## Feature ABC
-
-// Feature details
 
 
-## Feature XYZ
+## Mark task as completed
+input: mark 1
+```angular2html
+output:
+    ____________________________________________________________
+    Nice! I've marked this task as done:
+        [D][X] buy books (by: Jan 4th)
+    ____________________________________________________________
 
-// Feature details
+```
+   
