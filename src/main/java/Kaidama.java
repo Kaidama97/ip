@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Kaidama {
@@ -16,6 +17,16 @@ public class Kaidama {
                 break;
             } else if (input.equals("list")) {
                 Response.getList(tl);
+            } else if (input.contains("unmark")) {
+                int idx = Integer.parseInt(input.split(" ")[1]);
+                Task task = tl.getTask(idx);
+                tl.setTaskUndone(idx);
+                Response.unMarkedMsg(task);
+            } else if (input.contains("mark")) {
+                int idx = Integer.parseInt(input.split(" ")[1]);
+                Task task = tl.getTask(idx);
+                tl.setTaskDone(idx);
+                Response.markedMsg(task);
             } else {
                 Task task = new Task(input);
                 tl.addTask(task);

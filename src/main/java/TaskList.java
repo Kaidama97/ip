@@ -10,6 +10,19 @@ public class TaskList {
         tasks.add(task);
     }
 
+    public void setTaskDone(int index) {
+        getTask(index).setDone();
+    }
+
+    public void setTaskUndone(int index) {
+        getTask(index).setUndone();
+    }
+
+
+    public Task getTask(int index) {
+        return tasks.get(index - 1);
+    }
+
     @Override
     public String toString() {
         //StringBuilder str = new StringBuilder();
