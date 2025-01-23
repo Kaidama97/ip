@@ -29,10 +29,9 @@ public class TaskList {
 
     @Override
     public String toString() {
-        //StringBuilder str = new StringBuilder();
         String str = "";
         for (int i = 0; i < tasks.size(); i++) {
-            str += "    " + (i + 1) + ". ";
+            str += "    " + (i + 1) + ".";
             str += tasks.get(i).toString() + "\n";
         }
         return str;

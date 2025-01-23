@@ -11,7 +11,7 @@ public class Kaidama {
         Response.initMsg();
 
 
-        while(true) {
+        while(sc.hasNextLine()) {
            String input = sc.nextLine();
             if (input.equals("bye")) {
                 Response.exitMsg();
