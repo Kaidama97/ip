@@ -103,6 +103,7 @@ public class Kaidama {
             throw new KaidamaException("Please enter the due date of the task");
         }
         task = new Deadlines(split[0], split[1]);
+        
     }
 
     private static void setEvent(String input) throws KaidamaException {
