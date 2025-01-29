@@ -10,6 +10,12 @@ public class Events extends Task {
         this.to = to;
     }
 
+    public Events(boolean isDone, String description, String from, String to) {
+        super(isDone, description);
+        this.from = from;
+        this.to = to;
+    }
+
     @Override
     public String toStorageString() {
         return "E " + super.toStorageString() + " | " + from + "-" + to;

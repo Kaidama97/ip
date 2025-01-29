@@ -5,6 +5,10 @@ public class ToDos extends Task {
         super(description);
     }
 
+    public ToDos(boolean isDone, String description) {
+        super(isDone, description);
+
+    }
     @Override
     public String toStorageString() {
         return "T " + super.toStorageString();

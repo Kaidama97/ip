@@ -1,6 +1,7 @@
 
 import exception.KaidamaException;
 import handler.FileHandler;
+import handler.Parser;
 import task.Deadlines;
 import task.Events;
 import task.Task;
@@ -22,7 +23,9 @@ public class Kaidama {
         fHandler = new FileHandler(filePath);
 
         try {
-            fHandler.readFile();
+            for (String line: fHandler.readFile()) {
+                tl.addTask(Parser.inputToTask(line));
+            }
         } catch (KaidamaException e) {
             Response.errorMsg(String.valueOf(e));
         } catch (IOException e) {
@@ -30,6 +33,7 @@ public class Kaidama {
         }
 
         Response.initMsg();
+
         while (sc.hasNextLine()) {
             String input = sc.nextLine();
             try {
@@ -73,10 +77,9 @@ public class Kaidama {
 
     }
     public static void main(String[] args) throws KaidamaException {
-
         new Kaidama().run();
-
     }
+
     private void setUnmark(String input) throws KaidamaException {
         String[] split = input.split(" ");
         if (split.length == 1) {

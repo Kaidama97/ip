@@ -7,6 +7,10 @@ public class Deadlines extends Task {
         this.deadline = deadline;
     }
 
+    public Deadlines(boolean isDone, String description, String deadline) {
+        super(isDone, description);
+        this.deadline = deadline;
+    }
     @Override
     public String toStorageString() {
         return "D " + super.toStorageString() + " | " + deadline;
