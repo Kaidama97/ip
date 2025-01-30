@@ -8,6 +8,7 @@ import task.Task;
 import task.ToDos;
 
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Kaidama {
@@ -23,7 +24,7 @@ public class Kaidama {
         fHandler = new FileHandler(filePath);
 
         try {
-            for (String line: fHandler.readFile()) {
+            for (String line : fHandler.readFile()) {
                 tl.addTask(Parser.inputToTask(line));
             }
         } catch (KaidamaException e) {
@@ -64,7 +65,7 @@ public class Kaidama {
                     } else {
                         throw new KaidamaException("please enter a valid input (mark, unmark, todo, deadline or event only)");
                     }
-                    fHandler.writeFile(task.toStorageString());
+                    //fHandler.writeFile(task.toStorageString());
                     tl.addTask(task);
                     Response.addNewTask(task, tl.getTaskCount());
                 }
@@ -76,6 +77,7 @@ public class Kaidama {
         }
 
     }
+
     public static void main(String[] args) throws KaidamaException {
         new Kaidama().run();
     }
@@ -86,7 +88,7 @@ public class Kaidama {
             throw new KaidamaException("Please enter a task to unmark");
         }
         int idx = Integer.parseInt(split[1].trim());
-        if(idx > tl.getTaskCount()) {
+        if (idx > tl.getTaskCount()) {
             throw new KaidamaException("No task found");
         }
         Task task = tl.getTask(idx);
@@ -100,7 +102,7 @@ public class Kaidama {
             throw new KaidamaException("Please enter a task to mark");
         }
         int idx = Integer.parseInt(split[1].trim());
-        if(idx > tl.getTaskCount()) {
+        if (idx > tl.getTaskCount()) {
             throw new KaidamaException("No task found");
         }
         Task task = tl.getTask(idx);
@@ -114,7 +116,7 @@ public class Kaidama {
             throw new KaidamaException("Please enter a task to delete");
         }
         int idx = Integer.parseInt(split[1].trim());
-        if(idx > tl.getTaskCount()) {
+        if (idx > tl.getTaskCount()) {
             throw new KaidamaException("No task found");
         }
         Task task = tl.getTask(idx);
@@ -123,7 +125,7 @@ public class Kaidama {
     }
 
     private void setTodo(String input) throws KaidamaException {
-        if(input.split(" ").length == 1) {
+        if (input.split(" ").length == 1) {
             throw new KaidamaException("Please enter a description of the todo task");
         }
         task = new ToDos(input.replace("todo ", ""));
@@ -133,12 +135,25 @@ public class Kaidama {
     private void setDeadLine(String input) throws KaidamaException {
         input = input.replace("deadline ", "");
         String[] split = input.split("/by ");
+        String[] dateSplit;
         if (split[0].isEmpty()) {
             throw new KaidamaException("Please enter a description of the deadline");
         } else if (split.length == 1 || split[1].trim().isEmpty()) {
             throw new KaidamaException("Please enter the due date of the task");
         }
-        task = new Deadlines(split[0].trim(), split[1].trim());
+
+        dateSplit = split[1].split(" ");
+
+        try {
+            String date = dateSplit[0];
+            if (Parser.isDateFormat(date)) {
+                task = new Deadlines(split[0].trim(), Parser.parseDate(split[1].trim()));
+            } else {
+                throw new KaidamaException("Invalid date format. Please use yyyy-MM-dd.");
+            }
+        } catch (DateTimeParseException e) {
+            throw new KaidamaException("Oh no wrong date format!");
+        }
     }
 
     private void setEvent(String input) throws KaidamaException {
@@ -152,13 +167,26 @@ public class Kaidama {
             throw new KaidamaException("Please enter the event dates of the task");
         }
         String[] toSplit = split[1].split("/to ");
-        if(toSplit[0].trim().isEmpty()) {
+        if (toSplit[0].trim().isEmpty()) {
             throw new KaidamaException("Please enter a start time of the event");
         }
-        if(toSplit.length == 1 || toSplit[1].trim().isEmpty()) {
+        if (toSplit.length == 1 || toSplit[1].trim().isEmpty()) {
             throw new KaidamaException("Please enter a end time of the event");
         }
-        task = new Events(split[0].trim(), toSplit[0].trim(), toSplit[1].trim());
+
+        try {
+            String[] dateFromSplit = toSplit[0].trim().split(" ");
+            String[] dateToSplit = toSplit[1].trim().split(" ");
+
+            if (Parser.isDateFormat(dateFromSplit[0]) && Parser.isDateFormat(dateToSplit[0event task /from 2019-02-11 1800 /to 2019-02-12 1800])) {
+                task = new Events(split[0].trim(), Parser.parseDate(toSplit[0].trim()), Parser.parseDate(toSplit[1].trim()));
+            } else {
+                throw new KaidamaException("Invalid date format. Please use yyyy-MM-dd.");
+            }
+        } catch (DateTimeParseException e) {
+            throw new KaidamaException("Oh no wrong date format!");
+        }
+        //task = new Events(split[0].trim(), toSplit[0].trim(), toSplit[1].trim());
 
     }
 
