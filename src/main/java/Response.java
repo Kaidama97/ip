@@ -1,3 +1,5 @@
+import task.Task;
+
 public class Response {
     private static String line = ("    ____________________________________________________________");
 

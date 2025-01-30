@@ -1,3 +1,5 @@
+package task;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -5,6 +7,10 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+    }
+    public Task(boolean isDone, String description) {
+        this.description = description;
+        this.isDone = isDone;
     }
 
     public void setDone() {
@@ -17,8 +23,19 @@ public class Task {
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
+
+    public String toStorageString() {
+        String out = "| ";
+        if (isDone) {
+            out += "1" + " | ";
+        } else {
+            out += "0" + " | ";
+        }
+        return out + description;
+    }
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
+
     }
 }

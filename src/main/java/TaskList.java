@@ -1,9 +1,15 @@
+import task.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {
-    private ArrayList<Task> tasks;
+    protected ArrayList<Task> tasks;
     public TaskList() {
-        tasks = new ArrayList<>();
+        this.tasks = new ArrayList<>();
+    }
+
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public void addTask(Task task) {

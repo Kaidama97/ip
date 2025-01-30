@@ -1,13 +1,39 @@
-import java.util.Objects;
+
+import exception.KaidamaException;
+import handler.FileHandler;
+import handler.Parser;
+import task.Deadlines;
+import task.Events;
+import task.Task;
+import task.ToDos;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Kaidama {
-    private static TaskList tl;
-    private static Task task;
-    public static void main(String[] args) throws KaidamaException {
+    private final String filePath = "./data/Kaidama.txt";
+    private FileHandler fHandler;
+    private TaskList tl;
+    private Task task;
+    private Scanner sc;
+
+    public void run() {
+        sc = new Scanner(System.in);
         tl = new TaskList();
-        Scanner sc = new Scanner(System.in);
+        fHandler = new FileHandler(filePath);
+
+        try {
+            for (String line: fHandler.readFile()) {
+                tl.addTask(Parser.inputToTask(line));
+            }
+        } catch (KaidamaException e) {
+            Response.errorMsg(String.valueOf(e));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         Response.initMsg();
+
         while (sc.hasNextLine()) {
             String input = sc.nextLine();
             try {
@@ -19,11 +45,14 @@ public class Kaidama {
                     Response.getList(tl);
                 } else if (input.contains("unmark")) {
                     setUnmark(input);
+                    fHandler.updateTaskInFile(tl.tasks);
                 } else if (input.contains("mark")) {
                     setMark(input);
+                    fHandler.updateTaskInFile(tl.tasks);
                 } else if (input.contains("delete")) {
                     deleteTask(input);
-                }else {
+                    fHandler.updateTaskInFile(tl.tasks);
+                } else {
                     if (input.contains("todo")) {
                         setTodo(input);
 
@@ -35,22 +64,28 @@ public class Kaidama {
                     } else {
                         throw new KaidamaException("please enter a valid input (mark, unmark, todo, deadline or event only)");
                     }
+                    fHandler.writeFile(task.toStorageString());
                     tl.addTask(task);
                     Response.addNewTask(task, tl.getTaskCount());
                 }
             } catch (KaidamaException e) {
                 Response.errorMsg(String.valueOf(e));
+            } catch (IOException e) {
+                Response.errorMsg(e.getMessage());
             }
         }
 
-
     }
-    private static void setUnmark(String input) throws KaidamaException {
+    public static void main(String[] args) throws KaidamaException {
+        new Kaidama().run();
+    }
+
+    private void setUnmark(String input) throws KaidamaException {
         String[] split = input.split(" ");
         if (split.length == 1) {
             throw new KaidamaException("Please enter a task to unmark");
         }
-        int idx = Integer.parseInt(split[1]);
+        int idx = Integer.parseInt(split[1].trim());
         if(idx > tl.getTaskCount()) {
             throw new KaidamaException("No task found");
         }
@@ -59,12 +94,12 @@ public class Kaidama {
         Response.unMarkedMsg(task);
     }
 
-    private static void setMark(String input) throws KaidamaException {
+    private void setMark(String input) throws KaidamaException {
         String[] split = input.split(" ");
         if (split.length == 1) {
             throw new KaidamaException("Please enter a task to mark");
         }
-        int idx = Integer.parseInt(split[1]);
+        int idx = Integer.parseInt(split[1].trim());
         if(idx > tl.getTaskCount()) {
             throw new KaidamaException("No task found");
         }
@@ -73,12 +108,12 @@ public class Kaidama {
         Response.markedMsg(task);
     }
 
-    private static void deleteTask(String input) throws KaidamaException {
+    private void deleteTask(String input) throws KaidamaException {
         String[] split = input.split(" ");
         if (split.length == 1) {
             throw new KaidamaException("Please enter a task to delete");
         }
-        int idx = Integer.parseInt(split[1]);
+        int idx = Integer.parseInt(split[1].trim());
         if(idx > tl.getTaskCount()) {
             throw new KaidamaException("No task found");
         }
@@ -87,14 +122,15 @@ public class Kaidama {
         Response.deleteTaskMsg(task, tl.getTaskCount());
     }
 
-    private static void setTodo(String input) throws KaidamaException {
+    private void setTodo(String input) throws KaidamaException {
         if(input.split(" ").length == 1) {
             throw new KaidamaException("Please enter a description of the todo task");
         }
         task = new ToDos(input.replace("todo ", ""));
+
     }
 
-    private static void setDeadLine(String input) throws KaidamaException {
+    private void setDeadLine(String input) throws KaidamaException {
         input = input.replace("deadline ", "");
         String[] split = input.split("/by ");
         if (split[0].isEmpty()) {
@@ -102,11 +138,10 @@ public class Kaidama {
         } else if (split.length == 1 || split[1].trim().isEmpty()) {
             throw new KaidamaException("Please enter the due date of the task");
         }
-        task = new Deadlines(split[0], split[1]);
-        
+        task = new Deadlines(split[0].trim(), split[1].trim());
     }
 
-    private static void setEvent(String input) throws KaidamaException {
+    private void setEvent(String input) throws KaidamaException {
 
         String msg = input.replace("event ", "");
         String[] split = msg.split("/from ");
@@ -123,7 +158,8 @@ public class Kaidama {
         if(toSplit.length == 1 || toSplit[1].trim().isEmpty()) {
             throw new KaidamaException("Please enter a end time of the event");
         }
-        task = new Events(split[0], toSplit[0], toSplit[1]);
+        task = new Events(split[0].trim(), toSplit[0].trim(), toSplit[1].trim());
+
     }
 
 
