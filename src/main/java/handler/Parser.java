@@ -31,16 +31,18 @@ public class Parser {
     }
 
     public static LocalDateTime parseDate(String date) {
-        return LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        return LocalDateTime.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
     }
 
     public static boolean isDateFormat(String dateString) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate.parse(dateString, formatter);
             return true;
         } catch (DateTimeParseException e) {
             return false;
+
         }
     }
+
 }

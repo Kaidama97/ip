@@ -1,6 +1,7 @@
 package task;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Deadlines extends Task {
     private LocalDateTime deadline;
@@ -15,12 +16,16 @@ public class Deadlines extends Task {
         this.deadline = deadline;
     }
 
+    private String outputDateFormat(LocalDateTime date) {
+        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm")).toString();
+    }
+
     @Override
     public String toStorageString() {
-        return "D " + super.toStorageString() + " | " + deadline.toString();
+        return "D " + super.toStorageString() + " | " + outputDateFormat(this.deadline);
     }
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + deadline.toString() + ")";
+        return "[D]" + super.toString() + " (by: " + this.deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm")) + ")";
     }
 }

@@ -65,7 +65,7 @@ public class Kaidama {
                     } else {
                         throw new KaidamaException("please enter a valid input (mark, unmark, todo, deadline or event only)");
                     }
-                    //fHandler.writeFile(task.toStorageString());
+                    fHandler.writeFile(task.toStorageString());
                     tl.addTask(task);
                     Response.addNewTask(task, tl.getTaskCount());
                 }
