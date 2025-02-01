@@ -24,6 +24,10 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     /**
      * Converts the task into a string format suitable for storage.
      *

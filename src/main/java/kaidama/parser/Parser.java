@@ -86,8 +86,14 @@ public class Parser {
      * @throws KaidamaException If the input is invalid or unrecognized.
      */
     public static Command parseCommand(String input) throws KaidamaException {
+<<<<<<< HEAD
         input = input.toLowerCase();
         if (input.equals("bye")) {
+=======
+        if(input.contains("find")) {
+            return new FindCommand(input);
+        } else if (input.equals("bye")) {
+>>>>>>> branch-Level-9
             return new ExitCommand();
         } else if (input.trim().equals("list")) {
             return new ListCommand();
