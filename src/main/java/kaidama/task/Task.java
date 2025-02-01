@@ -24,6 +24,11 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    /**
+     * Converts the task into a string format suitable for storage.
+     *
+     * @return A string representation of the task for storage.
+     */
     public String toStorageString() {
         String out = "| ";
         if (isDone) {
@@ -33,6 +38,12 @@ public class Task {
         }
         return out + description;
     }
+
+    /**
+     * Converts the task into a string format suitable for display.
+     *
+     * @return A string representation of the task for display.
+     */
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;

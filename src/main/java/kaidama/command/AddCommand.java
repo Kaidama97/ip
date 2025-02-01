@@ -13,13 +13,32 @@ import kaidama.ui.Ui;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
 
+/**
+ *
+ * The AddCommand class represents a command Todo, Deadline, and Event. Add task into the TaskList
+ */
 public class AddCommand extends Command {
     private String input;
     private Task task;
 
+    /**
+     * Constructs an AddCommand object with the user input.
+     *
+     * @param input The user input containing the task details.
+     */
     public AddCommand(String input) {
         this.input = input;
     }
+
+    /**
+     * Executes command to add a task to the task list.
+     *
+     * @param tasks   The list of tasks to which the new task will be added.
+     * @param ui      Deals with interactions with the user.
+     * @param storage The storage deals with loading tasks from the file and saving tasks in the file.
+     * @throws KaidamaException If there is an error in the task details or format.
+     * @throws IOException      If there is an error writing to the file.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
         if(input.contains("todo")) {
@@ -33,11 +52,22 @@ public class AddCommand extends Command {
         tasks.addTask(task);
         Ui.addNewTask(task, tasks.getTaskCount());
     }
+
+    /**
+     * Indicates whether the command is an exit command.
+     *
+     * @return False, as this command does not exit the application.
+     */
     @Override
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * Sets todo task based on the user input.
+     *
+     * @throws KaidamaException If the description of the Todo task is empty.
+     */
     private void setTodo() throws KaidamaException {
         if (input.split(" ").length == 1) {
             throw new KaidamaException("Please enter a description of the todo task");
@@ -46,6 +76,11 @@ public class AddCommand extends Command {
 
     }
 
+    /**
+     * Sets deadline based on the user input.
+     *
+     * @throws KaidamaException If the description or due date of the Deadline task is invalid.
+     */
     private void setDeadLine() throws KaidamaException {
         input = input.replace("deadline ", "");
         String[] split = input.split("/by ");
@@ -70,6 +105,11 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Sets event based on the user input.
+     *
+     * @throws KaidamaException If the description, start time, or end time of the Event task is invalid.
+     */
     private void setEvent() throws KaidamaException {
 
         String msg = input.replace("event ", "");
