@@ -1,18 +1,20 @@
+package main;
 
 import exception.KaidamaException;
-import handler.FileHandler;
-import handler.Parser;
-import task.Deadlines;
-import task.Events;
+import storage.FileHandler;
+import storage.Parser;
+import task.TaskList;
 import task.Task;
 import task.ToDos;
+import task.Deadlines;
+import task.Events;
 
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Kaidama {
-    private final String filePath = "./data/Kaidama.txt";
+    private final String filePath = "./data/main.Kaidama.txt";
     private FileHandler fHandler;
     private TaskList tl;
     private Task task;
@@ -46,13 +48,13 @@ public class Kaidama {
                     Response.getList(tl);
                 } else if (input.contains("unmark")) {
                     setUnmark(input);
-                    fHandler.updateTaskInFile(tl.tasks);
+                    fHandler.updateTaskInFile(tl.getTaskList());
                 } else if (input.contains("mark")) {
                     setMark(input);
-                    fHandler.updateTaskInFile(tl.tasks);
+                    fHandler.updateTaskInFile(tl.getTaskList());
                 } else if (input.contains("delete")) {
                     deleteTask(input);
-                    fHandler.updateTaskInFile(tl.tasks);
+                    fHandler.updateTaskInFile(tl.getTaskList());
                 } else {
                     if (input.contains("todo")) {
                         setTodo(input);

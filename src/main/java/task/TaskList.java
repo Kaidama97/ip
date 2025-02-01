@@ -1,19 +1,19 @@
-import task.Task;
+package task;
 
 import java.util.ArrayList;
 
 public class TaskList {
-    protected ArrayList<Task> tasks;
+    private ArrayList<Task> taskList;
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        this.taskList = new ArrayList<>();
     }
 
-    public TaskList(ArrayList<Task> tasks) {
-        this.tasks = tasks;
+    public TaskList(ArrayList<Task> taskList) {
+        this.taskList = taskList;
     }
 
     public void addTask(Task task) {
-        tasks.add(task);
+        taskList.add(task);
     }
 
     public void setTaskDone(int index) {
@@ -25,23 +25,26 @@ public class TaskList {
     }
 
     public void deleteTask(int index) {
-        tasks.remove(index - 1);
+        taskList.remove(index - 1);
     }
 
     public Task getTask(int index) {
-        return tasks.get(index - 1);
+        return taskList.get(index - 1);
     }
 
     public int getTaskCount() {
-        return tasks.size();
+        return taskList.size();
     }
 
+    public ArrayList<Task> getTaskList() {
+        return taskList;
+    }
     @Override
     public String toString() {
         String str = "";
-        for (int i = 0; i < tasks.size(); i++) {
+        for (int i = 0; i < taskList.size(); i++) {
             str += "    " + (i + 1) + ".";
-            str += tasks.get(i).toString() + "\n";
+            str += taskList.get(i).toString() + "\n";
         }
         return str;
     }

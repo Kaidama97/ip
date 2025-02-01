@@ -1,4 +1,4 @@
-# Kaidama User Guide
+# main.Kaidama User Guide
 
 ![img.png](img.png)
 

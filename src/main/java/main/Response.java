@@ -1,4 +1,7 @@
+package main;
+
 import task.Task;
+import task.TaskList;
 
 public class Response {
     private static String line = ("    ____________________________________________________________");
@@ -8,7 +11,7 @@ public class Response {
     }
 
     public static void initMsg() {
-        System.out.println("    Hello! I'm Kaidama.");
+        System.out.println("    Hello! I'm main.Kaidama.");
         System.out.println("    What can I do for you?");
 
     }
