@@ -9,7 +9,7 @@ import kaidama.ui.Ui;
 import java.io.IOException;
 
 public class MarkCommand extends Command {
-    private String input;
+    private final String input;
 
     public MarkCommand(String input) {
         this.input = input;

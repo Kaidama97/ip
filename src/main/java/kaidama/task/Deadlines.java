@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadlines extends Task {
+
+    private static final DateTimeFormatter STORAGE_DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+    private static final DateTimeFormatter DISPLAY_DATE_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
+
     private LocalDateTime deadline;
 
 
@@ -16,16 +20,17 @@ public class Deadlines extends Task {
         this.deadline = deadline;
     }
 
-    private String outputDateFormat(LocalDateTime date) {
-        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm")).toString();
+    private String formatDateForStorage(LocalDateTime date) {
+        return date.format(STORAGE_DATE_FORMATTER);
+
     }
 
     @Override
     public String toStorageString() {
-        return "D " + super.toStorageString() + " | " + outputDateFormat(this.deadline);
+        return "D " + super.toStorageString() + " | " + formatDateForStorage(this.deadline);
     }
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm")) + ")";
+        return "[D]" + super.toString() + " (by: " + this.deadline.format(DISPLAY_DATE_FORMATTER) + ")";
     }
 }
