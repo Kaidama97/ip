@@ -36,7 +36,7 @@ public class Storage {
                 readLine = br.readLine();
             }
         } catch (IOException e) {
-            throw new KaidamaException("error reading file");
+            throw new KaidamaException("Error reading file: " + e.getMessage());
         } finally {
             if (br != null) {
                 br.close();
@@ -57,7 +57,7 @@ public class Storage {
             bw.write(line);
             bw.newLine();
         } catch (IOException e) {
-            throw new KaidamaException("error writing file");
+            throw new KaidamaException("Error writing to file: " + e.getMessage());
         } finally {
             if (bw != null) {
                 bw.close();
@@ -79,7 +79,7 @@ public class Storage {
                 bw.newLine();
             }
         } catch (IOException e) {
-            throw new KaidamaException("error writing file");
+            throw new KaidamaException("Error updating file: " + e.getMessage());
         } finally {
             if (bw != null) {
                 bw.close();
@@ -87,6 +87,4 @@ public class Storage {
         }
 
     }
-
-
 }

@@ -1,7 +1,14 @@
 package kaidama.parser;
 
 
-import kaidama.command.*;
+import kaidama.command.Command;
+import kaidama.command.AddCommand;
+import kaidama.command.ListCommand;
+import kaidama.command.DeleteCommand;
+import kaidama.command.MarkCommand;
+import kaidama.command.UnmarkCommand;
+import kaidama.command.ExitCommand;
+
 import kaidama.exception.KaidamaException;
 import kaidama.task.Deadlines;
 import kaidama.task.Events;
@@ -15,14 +22,13 @@ import java.time.format.DateTimeParseException;
 
 public class Parser {
 
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final String TASK_DONE_FLAG = "1"; // Constant for task done status
+
     public static Task inputToTask(String input) {
         String[] tokens = input.split("\\|");
-        boolean isDone = false;
-        if (tokens[1].trim().equals("1")) {
-            isDone = true;
-        } else {
-            isDone = false;
-        }
+        boolean isDone = tokens[1].trim().equals(TASK_DONE_FLAG);
         if (input.startsWith("T")) {
             return new ToDos(isDone, tokens[2].trim());
         } else if (input.startsWith("D")) {
@@ -34,13 +40,12 @@ public class Parser {
     }
 
     public static LocalDateTime parseDate(String date) {
-        return LocalDateTime.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+        return LocalDateTime.parse(date, DATE_TIME_FORMATTER);
     }
 
     public static boolean isDateFormat(String dateString) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate.parse(dateString, formatter);
+            LocalDate.parse(dateString, DATE_FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -49,6 +54,7 @@ public class Parser {
     }
 
     public static Command parseCommand(String input) throws KaidamaException {
+        input = input.toLowerCase();
         if (input.equals("bye")) {
             return new ExitCommand();
         } else if (input.trim().equals("list")) {

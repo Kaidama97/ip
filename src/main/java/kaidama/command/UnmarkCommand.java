@@ -17,18 +17,18 @@ public class UnmarkCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
-            String[] split = this.input.split(" ");
-            if (split.length == 1) {
-                throw new KaidamaException("Please enter a task to unmark");
-            }
-            int idx = Integer.parseInt(split[1].trim());
-            if (idx > tasks.getTaskCount()) {
-                throw new KaidamaException("No task found");
-            }
-            Task task = tasks.getTask(idx);
-            tasks.setTaskUndone(idx);
-            Ui.unMarkedMsg(task);
-            storage.writeFile(task.toStorageString());
+        String[] split = this.input.split(" ");
+        if (split.length == 1) {
+            throw new KaidamaException("Please enter a task to unmark");
+        }
+        int idx = Integer.parseInt(split[1].trim());
+        if (idx > tasks.getTaskCount()) {
+            throw new KaidamaException("No task found");
+        }
+        Task task = tasks.getTask(idx);
+        tasks.setTaskUndone(idx);
+        ui.unMarkedMsg(task);
+        storage.writeFile(task.toStorageString());
     }
     @Override
     public boolean isExit() {
