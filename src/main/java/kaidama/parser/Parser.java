@@ -49,7 +49,9 @@ public class Parser {
     }
 
     public static Command parseCommand(String input) throws KaidamaException {
-        if (input.equals("bye")) {
+        if(input.contains("find")) {
+            return new FindCommand(input);
+        } else if (input.equals("bye")) {
             return new ExitCommand();
         } else if (input.trim().equals("list")) {
             return new ListCommand();

@@ -73,6 +73,14 @@ public class Ui {
         System.out.println(DIVIDER_LINE);
     }
 
+    public static void printDivider() {
+        System.out.println(DIVIDER_LINE);
+    }
+
+    public static void printOutputString(String output) {
+        System.out.println(TAB_SEPARATOR + output);
+    }
+
 
 }
 
