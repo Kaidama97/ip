@@ -1,28 +1,31 @@
 package storage;
 
 import exception.KaidamaException;
+import parser.Parser;
 import task.Task;
+import task.TaskList;
 
 import java.io.*;
 import java.util.ArrayList;
 
-public class FileHandler {
+public class Storage {
     private File file;
     private String filePath;
 
-    public FileHandler(String filePath) {
+    public Storage(String filePath) {
         this.filePath = filePath;
     }
 
-    public ArrayList<String> readFile() throws IOException, KaidamaException {
+    public ArrayList<Task> readFile() throws KaidamaException, IOException {
         ArrayList<String> list = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<Task>();
         File file = new File(this.filePath);
         BufferedReader br = null;
 
         if (!file.exists()) {
             file.getParentFile().mkdirs();
             file.createNewFile();
-            return list;
+            return tasks;
         }
 
         try {
@@ -40,8 +43,11 @@ public class FileHandler {
                 br.close();
             }
         }
+        for (String line : list) {
+            tasks.add(Parser.inputToTask(line));
+        }
 
-        return list;
+        return tasks;
     }
 
 
@@ -69,7 +75,7 @@ public class FileHandler {
             bw.write("");
             bw.close();
             bw = new BufferedWriter(new FileWriter(filePath, true));
-            for(Task task : taskList) {
+            for (Task task : taskList) {
                 bw.write(task.toStorageString());
                 bw.newLine();
             }
@@ -82,8 +88,6 @@ public class FileHandler {
         }
 
     }
-
-
 
 
 }

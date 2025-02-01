@@ -8,20 +8,18 @@ mark
 unmark
 list
 add new task
-deadline /by Sunday
+deadline /by 01/02/2023 0800
 deadline do CS2103 ip /by
-deadline return books /by Sunday
-deadline buy books /by Jan 4th
+deadline return books /by 02/02/2023 0800
+deadline buy books /by 03/02/2023 0800
 mark 2
 mark 3
 unmark 3
 list
-event /from monday /to friday
-event party /from  /to 4am
-event party /from 1am /to
-event project meeting /from Aug 6th 2pm /to 4pm
-event dinner with friends /from Aug 7th 6pm /to 9pm
-mark 5
+event /from 01/02/2023 0800 /to 01/02/2023 0800
+event party /from  /to 01/02/2023 1400
+event party /from 01/02/2023 0100 /to
+event project meeting /from 01/02/2023 0200 /to 01/02/2023 1000
 list
 delete 4
 bye

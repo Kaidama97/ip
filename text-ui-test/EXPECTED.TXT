@@ -1,4 +1,4 @@
-    Hello! I'm main.Kaidama.
+    Hello! I'm Kaidama.
     What can I do for you?
     ____________________________________________________________
     OH NO!!! No task found
@@ -43,31 +43,31 @@
     ____________________________________________________________
     ____________________________________________________________
     Got it. I've added this task:
-        [D][ ] return books (by: Sunday)
+        [D][ ] return books (by: Feb 02 2023 0800)
     Now you have 2 task in the list
     ____________________________________________________________
     ____________________________________________________________
     Got it. I've added this task:
-        [D][ ] buy books (by: Jan 4th)
+        [D][ ] buy books (by: Feb 03 2023 0800)
     Now you have 3 task in the list
     ____________________________________________________________
     ____________________________________________________________
     Nice! I've marked this task as done:
-        [D][X] return books (by: Sunday)
+        [D][X] return books (by: Feb 02 2023 0800)
     ____________________________________________________________
     ____________________________________________________________
     Nice! I've marked this task as done:
-        [D][X] buy books (by: Jan 4th)
+        [D][X] buy books (by: Feb 03 2023 0800)
     ____________________________________________________________
     ____________________________________________________________
     OK, I've marked this task as not done yet:
-        [D][ ] buy books (by: Jan 4th)
+        [D][ ] buy books (by: Feb 03 2023 0800)
     ____________________________________________________________
     ____________________________________________________________
     Here are the tasks in your list:
     1.[T][X] borrow books
-    2.[D][X] return books (by: Sunday)
-    3.[D][ ] buy books (by: Jan 4th)
+    2.[D][X] return books (by: Feb 02 2023 0800)
+    3.[D][ ] buy books (by: Feb 03 2023 0800)
     ____________________________________________________________
     ____________________________________________________________
     OH NO!!! Please enter a description of the event
@@ -80,30 +80,20 @@
     ____________________________________________________________
     ____________________________________________________________
     Got it. I've added this task:
-        [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+        [E][ ] project meeting (from: Feb 01 2023 0200 to: Feb 01 2023 1000)
     Now you have 4 task in the list
-    ____________________________________________________________
-    ____________________________________________________________
-    Got it. I've added this task:
-        [E][ ] dinner with friends (from: Aug 7th 6pm to: 9pm)
-    Now you have 5 task in the list
-    ____________________________________________________________
-    ____________________________________________________________
-    Nice! I've marked this task as done:
-        [E][X] dinner with friends (from: Aug 7th 6pm to: 9pm)
     ____________________________________________________________
     ____________________________________________________________
     Here are the tasks in your list:
     1.[T][X] borrow books
-    2.[D][X] return books (by: Sunday)
-    3.[D][ ] buy books (by: Jan 4th)
-    4.[E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
-    5.[E][X] dinner with friends (from: Aug 7th 6pm to: 9pm)
+    2.[D][X] return books (by: Feb 02 2023 0800)
+    3.[D][ ] buy books (by: Feb 03 2023 0800)
+    4.[E][ ] project meeting (from: Feb 01 2023 0200 to: Feb 01 2023 1000)
     ____________________________________________________________
     ____________________________________________________________
     Noted. I've removed this task:
-        [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
-    Now you have 4 task in the list
+        [E][ ] project meeting (from: Feb 01 2023 0200 to: Feb 01 2023 1000)
+    Now you have 3 task in the list
     ____________________________________________________________
     ____________________________________________________________
     Bye. Hope to see you again soon!
