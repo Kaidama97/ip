@@ -20,12 +20,23 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * The Parser class is responsible for parsing user input and converting it into
+ * commands and tasks.
+ */
 public class Parser {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final String TASK_DONE_FLAG = "1"; // Constant for task done status
 
+    /**
+     * Converts a string representation of a task into a Task object.
+     * Handle inputs from file
+     *
+     * @param input The string representation of the task from file.
+     * @return A Task(Todo, Deadline, Event) object corresponding to the input string.
+     */
     public static Task inputToTask(String input) {
         String[] tokens = input.split("\\|");
         boolean isDone = tokens[1].trim().equals(TASK_DONE_FLAG);
@@ -39,10 +50,23 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a date string into a LocalDateTime object.
+     *
+     * @param date The date string to parse.
+     * @return A LocalDateTime object representing the parsed date format (dd/MM/yyyy HHmm).
+     */
     public static LocalDateTime parseDate(String date) {
         return LocalDateTime.parse(date, DATE_TIME_FORMATTER);
     }
 
+
+    /**
+     * Checks if a string is in the correct date format (dd/MM/yyyy).
+     *
+     * @param dateString The string to check.
+     * @return True if the string is in the correct date format, false otherwise.
+     */
     public static boolean isDateFormat(String dateString) {
         try {
             LocalDate.parse(dateString, DATE_FORMATTER);
@@ -53,6 +77,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a user input string into a Command object. Either bye, list, mark,
+     * unmark, delete,deadline, todo or event.
+     *
+     * @param input The user input string.
+     * @return A Command object corresponding to the input.
+     * @throws KaidamaException If the input is invalid or unrecognized.
+     */
     public static Command parseCommand(String input) throws KaidamaException {
         input = input.toLowerCase();
         if (input.equals("bye")) {
