@@ -1,4 +1,4 @@
-package exception;
+package kaidama.exception;
 
 public class KaidamaException extends Exception {
     private final String msg  = "OH NO!!!";

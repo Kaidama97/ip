@@ -1,4 +1,4 @@
-package task;
+package kaidama.task;
 
 public class Task {
     protected String description;
