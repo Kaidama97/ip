@@ -1,12 +1,10 @@
-package main;
+package ui;
 
 import command.Command;
 import exception.KaidamaException;
 import storage.Storage;
 import parser.Parser;
 import task.TaskList;
-import task.Task;
-import ui.Ui;
 
 import java.io.IOException;
 
@@ -16,7 +14,6 @@ public class Kaidama {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-    private Task task;
 
 
     public Kaidama(String filePath) {
