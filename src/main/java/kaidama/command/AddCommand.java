@@ -1,14 +1,14 @@
-package command;
+package kaidama.command;
 
-import exception.KaidamaException;
-import parser.Parser;
-import storage.Storage;
-import task.Deadlines;
-import task.Events;
-import task.TaskList;
-import task.ToDos;
-import task.Task;
-import ui.Ui;
+import kaidama.exception.KaidamaException;
+import kaidama.parser.Parser;
+import kaidama.storage.Storage;
+import kaidama.task.Deadlines;
+import kaidama.task.Events;
+import kaidama.task.TaskList;
+import kaidama.task.ToDos;
+import kaidama.task.Task;
+import kaidama.ui.Ui;
 
 import java.io.IOException;
 import java.time.format.DateTimeParseException;

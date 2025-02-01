@@ -1,9 +1,8 @@
-package storage;
+package kaidama.storage;
 
-import exception.KaidamaException;
-import parser.Parser;
-import task.Task;
-import task.TaskList;
+import kaidama.exception.KaidamaException;
+import kaidama.parser.Parser;
+import kaidama.task.Task;
 
 import java.io.*;
 import java.util.ArrayList;

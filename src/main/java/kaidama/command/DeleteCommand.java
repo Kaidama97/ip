@@ -1,10 +1,10 @@
-package command;
+package kaidama.command;
 
-import exception.KaidamaException;
-import storage.Storage;
-import task.Task;
-import task.TaskList;
-import ui.Ui;
+import kaidama.exception.KaidamaException;
+import kaidama.storage.Storage;
+import kaidama.task.Task;
+import kaidama.task.TaskList;
+import kaidama.ui.Ui;
 
 import java.io.IOException;
 

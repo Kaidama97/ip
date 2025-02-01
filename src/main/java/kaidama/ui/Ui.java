@@ -1,7 +1,7 @@
-package ui;
+package kaidama.ui;
 
-import task.Task;
-import task.TaskList;
+import kaidama.task.Task;
+import kaidama.task.TaskList;
 
 import java.util.Scanner;
 
