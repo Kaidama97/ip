@@ -1,9 +1,12 @@
-package storage;
+package parser;
 
+import command.*;
+import exception.KaidamaException;
 import task.Deadlines;
 import task.Events;
 import task.Task;
 import task.ToDos;
+import ui.Ui;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -45,4 +48,23 @@ public class Parser {
         }
     }
 
+    public static Command parseCommand(String input) throws KaidamaException {
+        if (input.equals("bye")) {
+            return new ExitCommand();
+        } else if (input.trim().equals("list")) {
+            return new ListCommand();
+        } else if (input.contains("unmark")) {
+            return new UnmarkCommand(input);
+        } else if (input.contains("mark")) {
+            return new MarkCommand(input);
+        } else if (input.contains("delete")) {
+            return new DeleteCommand(input);
+        } else if (input.contains("deadline") || input.contains("todo") || input.contains("event")) {
+            return new AddCommand(input);
+        } else {
+            throw new KaidamaException("please enter a valid input (mark, unmark, todo, deadline or event only)");
+        }
+    }
 }
+
+
