@@ -1,6 +1,6 @@
 package kaidama.task;
 
-public class ToDos extends Task {
+public class ToDo extends Task {
 
     /**
      * Constructs a Todo task with the specified description.
@@ -8,7 +8,7 @@ public class ToDos extends Task {
      *
      * @param description The description of the task.
      */
-    public ToDos(String description) {
+    public ToDo(String description) {
         super(description);
     }
 
@@ -20,7 +20,7 @@ public class ToDos extends Task {
      * @param isDone      The completion status of the task (true or false).
      * @param description The description of the task.
      */
-    public ToDos(boolean isDone, String description) {
+    public ToDo(boolean isDone, String description) {
         super(isDone, description);
     }
 

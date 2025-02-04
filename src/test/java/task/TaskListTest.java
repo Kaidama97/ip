@@ -1,6 +1,6 @@
 package task;
 
-import kaidama.task.Events;
+import kaidama.task.Event;
 import kaidama.task.Task;
 import kaidama.task.TaskList;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ public class TaskListTest {
         LocalDateTime fromDateTime = LocalDateTime.parse(fromDateTimeStr, formatter);
         LocalDateTime toDateTime = LocalDateTime.parse(toDateTimeStr, formatter);
         TaskList taskList = new TaskList();
-        Task task = new Events(false, "Test Event", fromDateTime, toDateTime);
+        Task task = new Event(false, "Test Event", fromDateTime, toDateTime);
         taskList.addTask(task);
         assertEquals(1, taskList.getTaskCount());
         assertEquals(task, taskList.getTask(1));

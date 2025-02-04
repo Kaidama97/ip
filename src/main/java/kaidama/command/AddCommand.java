@@ -3,10 +3,10 @@ package kaidama.command;
 import kaidama.exception.KaidamaException;
 import kaidama.parser.Parser;
 import kaidama.storage.Storage;
-import kaidama.task.Deadlines;
-import kaidama.task.Events;
+import kaidama.task.Deadline;
+import kaidama.task.Event;
 import kaidama.task.TaskList;
-import kaidama.task.ToDos;
+import kaidama.task.ToDo;
 import kaidama.task.Task;
 import kaidama.ui.Ui;
 
@@ -72,7 +72,7 @@ public class AddCommand extends Command {
         if (input.split(" ").length == 1) {
             throw new KaidamaException("Please enter a description of the todo task");
         }
-        task = new ToDos(input.replace("todo ", ""));
+        task = new ToDo(input.replace("todo ", ""));
 
     }
 
@@ -96,7 +96,7 @@ public class AddCommand extends Command {
         try {
             String date = dateSplit[0];
             if (Parser.isDateFormat(date)) {
-                task = new Deadlines(split[0].trim(), Parser.parseDate(split[1].trim()));
+                task = new Deadline(split[0].trim(), Parser.parseDate(split[1].trim()));
             } else {
                 throw new KaidamaException("Invalid date format. Please use dd/MM/yyyy.");
             }
@@ -133,7 +133,7 @@ public class AddCommand extends Command {
             String[] dateToSplit = toSplit[1].trim().split(" ");
 
             if (Parser.isDateFormat(dateFromSplit[0]) && Parser.isDateFormat(dateToSplit[0])) {
-                task = new Events(split[0].trim(), Parser.parseDate(toSplit[0].trim()), Parser.parseDate(toSplit[1].trim()));
+                task = new Event(split[0].trim(), Parser.parseDate(toSplit[0].trim()), Parser.parseDate(toSplit[1].trim()));
             } else {
                 throw new KaidamaException("Invalid date format. Please use yyyy-MM-dd.");
             }

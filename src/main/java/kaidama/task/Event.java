@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a task with a specific Events.
  * This class extends the Task class and adds functionality to handle events.
  */
-public class Events extends Task {
+public class Event extends Task {
 
     private static final DateTimeFormatter STORAGE_DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
     private static final DateTimeFormatter DISPLAY_DATE_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
@@ -23,7 +23,7 @@ public class Events extends Task {
      * @param from    The start time of the task. Date format: dd/MM/yyyy HHmm
      * @param to      The end time of the task. Date format: dd/MM/yyyy HHmm
      */
-    public Events(String description, LocalDateTime from, LocalDateTime to) {
+    public Event(String description, LocalDateTime from, LocalDateTime to) {
         super(description);
         this.from = from;
         this.to = to;
@@ -38,7 +38,7 @@ public class Events extends Task {
      * @param from    The start time of the task. Date format: dd/MM/yyyy HHmm
      * @param to      The end time of the task. Date format: dd/MM/yyyy HHmm
      */
-    public Events(boolean isDone, String description, LocalDateTime from, LocalDateTime to) {
+    public Event(boolean isDone, String description, LocalDateTime from, LocalDateTime to) {
         super(isDone, description);
         this.from = from;
         this.to = to;
@@ -73,6 +73,6 @@ public class Events extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (from: " + this.from.format(DISPLAY_DATE_FORMATTER) +
-                " to: " + this.to.format(DISPLAY_DATE_FORMATTER) + ")";
+                 " " + "to: " + this.to.format(DISPLAY_DATE_FORMATTER) + ")";
     }
 }

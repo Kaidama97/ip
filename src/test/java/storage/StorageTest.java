@@ -3,7 +3,7 @@ package storage;
 import kaidama.exception.KaidamaException;
 import kaidama.parser.Parser;
 import kaidama.storage.Storage;
-import kaidama.task.Deadlines;
+import kaidama.task.Deadline;
 import kaidama.task.Task;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +14,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -41,7 +40,7 @@ public class StorageTest {
         String initialData = "T | 1 | Sample Todo";
         storage.writeFile(initialData);
         LocalDateTime dateTime = Parser.parseDate("03/02/2019 1800");
-        Task deadline = new Deadlines(false, "test deadline", dateTime);
+        Task deadline = new Deadline(false, "test deadline", dateTime);
 
         storage.writeFile(deadline.toStorageString());
 

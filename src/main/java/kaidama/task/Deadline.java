@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  * Represents a deadline task
  * This class extends the Task class and adds functionality to handle deadlines.
  */
-public class Deadlines extends Task {
+public class Deadline extends Task {
 
     private static final DateTimeFormatter STORAGE_DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
     private static final DateTimeFormatter DISPLAY_DATE_FORMATTER = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
@@ -22,7 +22,7 @@ public class Deadlines extends Task {
      * @param description The description of the task.
      * @param deadline    The deadline of the task. Date format: dd/MM/yyyy HHmm
      */
-    public Deadlines(boolean isDone, String description, LocalDateTime deadline) {
+    public Deadline(boolean isDone, String description, LocalDateTime deadline) {
         super(isDone, description);
         this.deadline = deadline;
     }
@@ -34,7 +34,7 @@ public class Deadlines extends Task {
      * @param description The description of the task.
      * @param deadline    The deadline of the task. Date format: dd/MM/yyyy HHmm
      */
-    public Deadlines(String description, LocalDateTime deadline){
+    public Deadline(String description, LocalDateTime deadline){
         super(description);
         this.deadline = deadline;
     }

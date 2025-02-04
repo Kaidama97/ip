@@ -1,6 +1,6 @@
 package task;
 
-import kaidama.task.Deadlines;
+import kaidama.task.Deadline;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ public class DeadlineTest {
         String dateTimeStr = "02/02/2023 1030";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, formatter);
-        Deadlines task = new Deadlines(true, "Test Deadline", dateTime);
+        Deadline task = new Deadline(true, "Test Deadline", dateTime);
         assertEquals(expectedOutput, task.toString());
     }
 

@@ -10,10 +10,10 @@ import kaidama.command.UnmarkCommand;
 import kaidama.command.ExitCommand;
 
 import kaidama.exception.KaidamaException;
-import kaidama.task.Deadlines;
-import kaidama.task.Events;
+import kaidama.task.Deadline;
+import kaidama.task.Event;
 import kaidama.task.Task;
-import kaidama.task.ToDos;
+import kaidama.task.ToDo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -41,12 +41,12 @@ public class Parser {
         String[] tokens = input.split("\\|");
         boolean isDone = tokens[1].trim().equals(TASK_DONE_FLAG);
         if (input.startsWith("T")) {
-            return new ToDos(isDone, tokens[2].trim());
+            return new ToDo(isDone, tokens[2].trim());
         } else if (input.startsWith("D")) {
-            return new Deadlines(isDone, tokens[2].trim(), parseDate(tokens[3].trim()));
+            return new Deadline(isDone, tokens[2].trim(), parseDate(tokens[3].trim()));
         } else {
             String[] time = tokens[3].split("-");
-            return new Events(isDone, tokens[2].trim(), Parser.parseDate(time[0].trim()), Parser.parseDate(time[1].trim()));
+            return new Event(isDone, tokens[2].trim(), Parser.parseDate(time[0].trim()), Parser.parseDate(time[1].trim()));
         }
     }
 
