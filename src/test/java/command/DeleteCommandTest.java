@@ -1,20 +1,20 @@
 package command;
 
-import exception.KaidamaException;
-import storage.Storage;
-import task.TaskList;
-import ui.Ui;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import exception.KaidamaException;
+import storage.Storage;
+import task.TaskList;
+import ui.Ui;
 
 public class DeleteCommandTest {
     private TaskList taskList;
@@ -39,7 +39,7 @@ public class DeleteCommandTest {
         storage = new Storage("./data/kaidama.txt");
         taskList = new TaskList();
         ui = new Ui();
-        assertThrows(KaidamaException.class,
-                () -> new DeleteCommand("delete 123").execute(taskList, ui, storage));
+        assertThrows(KaidamaException.class, ()
+                -> new DeleteCommand("delete 123").execute(taskList, ui, storage));
     }
 }

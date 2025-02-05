@@ -18,11 +18,12 @@ public class ListCommand extends Command {
      * @param taskList   The TaskList contains the task list e.g., it has operations to add/delete tasks in the list.
      * @param ui      The user interface deals with interactions with the user.
      * @param storage The storage to deals with loading tasks from the file and saving tasks in the file.
+     * @return A formatted list of string containing the list of tasks.
      * @throws KaidamaException If the input is invalid or the task index is out of bounds.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws KaidamaException {
-        ui.getList(taskList);
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws KaidamaException {
+        return ui.getList(taskList);
     }
 
     /**
