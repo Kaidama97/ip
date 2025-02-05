@@ -1,4 +1,4 @@
-package kaidama.task;
+package task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -62,7 +62,8 @@ public class Event extends Task {
      */
     @Override
     public String toStorageString() {
-        return "E " + super.toStorageString() + " | " + formatDateForStorage(this.from) + "-" + formatDateForStorage(this.to);
+        return "E " + super.toStorageString() + " | " + formatDateForStorage(this.from) + "-"
+                + formatDateForStorage(this.to);
     }
 
     /**
@@ -72,7 +73,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + this.from.format(DISPLAY_DATE_FORMATTER) +
-                 " " + "to: " + this.to.format(DISPLAY_DATE_FORMATTER) + ")";
+        return "[E]" + super.toString() + " (from: " + this.from.format(DISPLAY_DATE_FORMATTER)
+                + " " + "to: " + this.to.format(DISPLAY_DATE_FORMATTER) + ")";
     }
 }

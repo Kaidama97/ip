@@ -1,11 +1,17 @@
-package kaidama.storage;
+package storage;
 
-import kaidama.exception.KaidamaException;
-import kaidama.parser.Parser;
-import kaidama.task.Task;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import exception.KaidamaException;
+import parser.Parser;
+import task.Task;
+
 
 /**
  * The Storage class handles reading from and writing to a file located at ./data.

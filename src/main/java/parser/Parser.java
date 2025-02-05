@@ -1,24 +1,24 @@
-package kaidama.parser;
-
-
-import kaidama.command.Command;
-import kaidama.command.AddCommand;
-import kaidama.command.ListCommand;
-import kaidama.command.DeleteCommand;
-import kaidama.command.MarkCommand;
-import kaidama.command.UnmarkCommand;
-import kaidama.command.ExitCommand;
-
-import kaidama.exception.KaidamaException;
-import kaidama.task.Deadline;
-import kaidama.task.Event;
-import kaidama.task.Task;
-import kaidama.task.ToDo;
+package parser;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import command.AddCommand;
+import command.Command;
+import command.DeleteCommand;
+import command.ExitCommand;
+import command.FindCommand;
+import command.ListCommand;
+import command.MarkCommand;
+import command.UnmarkCommand;
+import exception.KaidamaException;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.ToDo;
+
 
 /**
  * The Parser class is responsible for parsing user input and converting it into
@@ -46,7 +46,8 @@ public class Parser {
             return new Deadline(isDone, tokens[2].trim(), parseDate(tokens[3].trim()));
         } else {
             String[] time = tokens[3].split("-");
-            return new Event(isDone, tokens[2].trim(), Parser.parseDate(time[0].trim()), Parser.parseDate(time[1].trim()));
+            return new Event(isDone, tokens[2].trim(), Parser.parseDate(time[0].trim()),
+                    Parser.parseDate(time[1].trim()));
         }
     }
 
@@ -86,14 +87,10 @@ public class Parser {
      * @throws KaidamaException If the input is invalid or unrecognized.
      */
     public static Command parseCommand(String input) throws KaidamaException {
-<<<<<<< HEAD
         input = input.toLowerCase();
-        if (input.equals("bye")) {
-=======
-        if(input.contains("find")) {
+        if (input.contains("find")) {
             return new FindCommand(input);
         } else if (input.equals("bye")) {
->>>>>>> branch-Level-9
             return new ExitCommand();
         } else if (input.trim().equals("list")) {
             return new ListCommand();

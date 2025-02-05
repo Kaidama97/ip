@@ -1,10 +1,9 @@
 package command;
 
-import kaidama.command.DeleteCommand;
-import kaidama.exception.KaidamaException;
-import kaidama.storage.Storage;
-import kaidama.task.TaskList;
-import kaidama.ui.Ui;
+import exception.KaidamaException;
+import storage.Storage;
+import task.TaskList;
+import ui.Ui;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

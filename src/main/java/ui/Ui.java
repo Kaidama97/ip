@@ -1,13 +1,14 @@
-package kaidama.ui;
-
-import kaidama.task.Task;
-import kaidama.task.TaskList;
+package ui;
 
 import java.util.Scanner;
 
+import task.Task;
+import task.TaskList;
+
+
 public class Ui {
-    private final static String TAB_SEPARATOR = "    ";
-    private final static String DIVIDER_LINE = (TAB_SEPARATOR + "_".repeat(60));
+    private static final String TAB_SEPARATOR = "    ";
+    private static final String DIVIDER_LINE = (TAB_SEPARATOR + "_".repeat(60));
 
     private Scanner sc;
     public Ui() {

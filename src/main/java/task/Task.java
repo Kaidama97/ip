@@ -1,13 +1,31 @@
-package kaidama.task;
+package task;
 
+
+/**
+ * Represents a task with a description and completion status.
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Constructs a new Task with the specified description.
+     * The task is initially not done.
+     * This constructor is called when the user input an action.
+     *
+     * @param description The description of the task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
+    /**
+     * Constructs a new Task with the specified status and description.
+     * This constructor executes when reading task from file.
+     *
+     * @param isDone The completion status of the task.
+     * @param description The description of the task.
+     */
     public Task(boolean isDone, String description) {
         this.description = description;
         this.isDone = isDone;

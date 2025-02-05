@@ -1,20 +1,19 @@
-package kaidama.command;
-
-import kaidama.exception.KaidamaException;
-import kaidama.parser.Parser;
-import kaidama.storage.Storage;
-import kaidama.task.Deadline;
-import kaidama.task.Event;
-import kaidama.task.TaskList;
-import kaidama.task.ToDo;
-import kaidama.task.Task;
-import kaidama.ui.Ui;
+package command;
 
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
 
+import exception.KaidamaException;
+import parser.Parser;
+import storage.Storage;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.TaskList;
+import task.ToDo;
+import ui.Ui;
+
 /**
- *
  * The AddCommand class represents a command Todo, Deadline, and Event. Add task into the TaskList
  */
 public class AddCommand extends Command {
@@ -41,9 +40,9 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
-        if(input.contains("todo")) {
+        if (input.contains("todo")) {
             setTodo();
-        } else if(input.contains("deadline")) {
+        } else if (input.contains("deadline")) {
             setDeadLine();
         } else {
             setEvent();
@@ -133,7 +132,8 @@ public class AddCommand extends Command {
             String[] dateToSplit = toSplit[1].trim().split(" ");
 
             if (Parser.isDateFormat(dateFromSplit[0]) && Parser.isDateFormat(dateToSplit[0])) {
-                task = new Event(split[0].trim(), Parser.parseDate(toSplit[0].trim()), Parser.parseDate(toSplit[1].trim()));
+                task = new Event(split[0].trim(), Parser.parseDate(toSplit[0].trim()),
+                        Parser.parseDate(toSplit[1].trim()));
             } else {
                 throw new KaidamaException("Invalid date format. Please use yyyy-MM-dd.");
             }
