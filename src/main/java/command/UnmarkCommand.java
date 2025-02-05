@@ -30,11 +30,12 @@ public class UnmarkCommand extends Command {
      * @param tasks   The TaskList contains the task list e.g., it has operations to add/delete tasks in the list.
      * @param ui      The user interface deals with interactions with the user.
      * @param storage The storage to deals with loading tasks from the file and saving tasks in the file.
+     * @return A message confirming mark task as uncompleted.
      * @throws KaidamaException If the input is invalid or the task index is out of bounds.
      * @throws IOException      If there is an error updating the storage file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
         String[] split = this.input.split(" ");
         if (split.length == 1) {
             throw new KaidamaException("Please enter a task to unmark");
@@ -45,8 +46,8 @@ public class UnmarkCommand extends Command {
         }
         Task task = tasks.getTask(idx);
         tasks.setTaskUndone(idx);
-        Ui.unMarkedMsg(task);
         storage.updateTaskInFile(tasks.getTaskList());
+        return Ui.unMarkedMsg(task);
     }
 
     /**

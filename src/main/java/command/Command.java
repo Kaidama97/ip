@@ -20,10 +20,11 @@ public abstract class Command {
      * @param taskList The list of tasks to perform the command on.
      * @param ui       The user interface that handles interactions with the user.
      * @param storage  The storage that manages saving and loading tasks from the file.
+     * @return A message confirming the action of the task.
      * @throws KaidamaException If there is an error in processing the command (e.g., invalid task data).
      * @throws IOException      If there is an error reading from or writing to the storage file.
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws KaidamaException,
+    public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws KaidamaException,
             IOException;
 
 

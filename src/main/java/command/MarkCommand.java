@@ -29,11 +29,12 @@ public class MarkCommand extends Command {
      * @param tasks   The TaskList contains the task list e.g., it has operations to add/delete tasks in the list.
      * @param ui      The user interface deals with interactions with the user.
      * @param storage The storage to deals with loading tasks from the file and saving tasks in the file.
+     * @return A message confirming the completion of the task.
      * @throws KaidamaException If the input is invalid or the task index is out of bounds.
      * @throws IOException      If there is an error updating the storage file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
 
         String[] split = input.split(" ");
         if (split.length == 1) {
@@ -45,8 +46,8 @@ public class MarkCommand extends Command {
         }
         Task task = tasks.getTask(idx);
         tasks.setTaskDone(idx);
-        Ui.markedMsg(task);
         storage.updateTaskInFile(tasks.getTaskList());
+        return ui.markedMsg(task);
     }
 
     /**

@@ -13,8 +13,8 @@ import ui.Ui;
 public class ExitCommand extends Command {
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws KaidamaException {
-
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws KaidamaException {
+        return ui.exitMsg();
     }
 
 

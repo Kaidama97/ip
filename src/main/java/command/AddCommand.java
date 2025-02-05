@@ -35,11 +35,12 @@ public class AddCommand extends Command {
      * @param tasks   The list of tasks to which the new task will be added.
      * @param ui      Deals with interactions with the user.
      * @param storage The storage deals with loading tasks from the file and saving tasks in the file.
+     * @return A message confirming the addition of the task.
      * @throws KaidamaException If there is an error in the task details or format.
      * @throws IOException      If there is an error writing to the file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
         if (input.contains("todo")) {
             setTodo();
         } else if (input.contains("deadline")) {
@@ -49,7 +50,7 @@ public class AddCommand extends Command {
         }
         storage.writeFile(task.toStorageString());
         tasks.addTask(task);
-        Ui.addNewTask(task, tasks.getTaskCount());
+        return Ui.addNewTask(task, tasks.getTaskCount());
     }
 
     /**

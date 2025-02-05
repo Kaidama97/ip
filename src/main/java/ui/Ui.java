@@ -19,67 +19,54 @@ public class Ui {
         return sc.nextLine();
     }
 
-    public static void initMsg() {
-        System.out.println(TAB_SEPARATOR + "Hello! I'm Kaidama.");
-        System.out.println(TAB_SEPARATOR + "What can I do for you?");
-
+    public static String initMsg() {
+        return TAB_SEPARATOR + "Hello! I'm Kaidama.\n"
+                + TAB_SEPARATOR + "What can I do for you?";
     }
 
-    public void exitMsg() {
-        System.out.println(DIVIDER_LINE);
-        System.out.println(TAB_SEPARATOR + "Bye. Hope to see you again soon!");
-        System.out.println(DIVIDER_LINE);
+    public String exitMsg() {
+        return DIVIDER_LINE + "\n"
+                + TAB_SEPARATOR + "Bye. Hope to see you again soon!";
     }
 
-    public void getList(TaskList list) {
-        System.out.println(DIVIDER_LINE);
-        System.out.println(TAB_SEPARATOR + "Here are the tasks in your list:");
-        System.out.print(list.toString());
-        System.out.println(DIVIDER_LINE);
+    public String getList(TaskList list) {
+        return TAB_SEPARATOR + "Here are the tasks in your list:\n"
+                + list.toString();
     }
 
-    public static void unMarkedMsg(Task task) {
-        System.out.println(DIVIDER_LINE);
-        System.out.println(TAB_SEPARATOR + "OK, I've marked this task as not done yet:");
-        System.out.println(TAB_SEPARATOR + TAB_SEPARATOR + task.toString());
-        System.out.println(DIVIDER_LINE);
+    public static String unMarkedMsg(Task task) {
+        return TAB_SEPARATOR + "OK, I've marked this task as not done yet:\n"
+                + TAB_SEPARATOR + TAB_SEPARATOR + task.toString();
     }
 
-    public static void markedMsg(Task task) {
-        System.out.println(DIVIDER_LINE);
-        System.out.println(TAB_SEPARATOR + "Nice! I've marked this task as done:");
-        System.out.println(TAB_SEPARATOR + TAB_SEPARATOR + task.toString());
-        System.out.println(DIVIDER_LINE);
+    public static String markedMsg(Task task) {
+        return TAB_SEPARATOR + "Nice! I've marked this task as done:\n"
+                + TAB_SEPARATOR + TAB_SEPARATOR + task.toString();
     }
 
-    public static void addNewTask(Task task, int taskCount) {
-        System.out.println(DIVIDER_LINE);
-        System.out.println(TAB_SEPARATOR + "Got it. I've added this task:");
-        System.out.println(TAB_SEPARATOR + TAB_SEPARATOR + task.toString());
-        System.out.println(TAB_SEPARATOR + "Now you have " + taskCount + " task in the list");
-        System.out.println(DIVIDER_LINE);
+    public static String addNewTask(Task task, int taskCount) {
+        return TAB_SEPARATOR + "Got it. I've added this task:\n"
+                + TAB_SEPARATOR + TAB_SEPARATOR + task.toString() + "\n"
+                + TAB_SEPARATOR + "Now you have " + taskCount + " task(s) in the list";
     }
 
-    public void errorMsg(String msg) {
-        System.out.println(DIVIDER_LINE);
-        System.out.println(TAB_SEPARATOR + "OH NO!!! " + msg);
-        System.out.println(DIVIDER_LINE);
+    public String errorMsg(String msg) {
+        return TAB_SEPARATOR + "OH NO!!! " + msg;
     }
 
-    public static void deleteTaskMsg(Task task, int taskCount) {
-        System.out.println(DIVIDER_LINE);
-        System.out.println(TAB_SEPARATOR + "Noted. I've removed this task:");
-        System.out.println(TAB_SEPARATOR + TAB_SEPARATOR + task.toString());
-        System.out.println(TAB_SEPARATOR + "Now you have " + taskCount + " task in the list");
-        System.out.println(DIVIDER_LINE);
+    public static String deleteTaskMsg(Task task, int taskCount) {
+        return TAB_SEPARATOR + "Noted. I've removed this task:\n"
+                + TAB_SEPARATOR + TAB_SEPARATOR + task.toString() + "\n"
+                + TAB_SEPARATOR + "Now you have " + taskCount + " task(s) in the list";
     }
 
-    public static void printDivider() {
-        System.out.println(DIVIDER_LINE);
+
+    public static String printDivider() {
+        return DIVIDER_LINE;
     }
 
-    public static void printOutputString(String output) {
-        System.out.println(TAB_SEPARATOR + output);
+    public static String printOutputString(String output) {
+        return TAB_SEPARATOR + output;
     }
 
 

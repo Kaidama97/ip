@@ -33,11 +33,12 @@ public class DeleteCommand extends Command {
      * @param tasks   The list of tasks to which the new task will be deleted from.
      * @param ui      Deals with interactions with the user.
      * @param storage The storage deals with loading tasks from the file and saving tasks in the file.
+     * @return A message confirming the deletion of the task.
      * @throws KaidamaException If there is an error in the task details or format.
      * @throws IOException      If there is an error writing to the file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
         String[] split = input.split(" ");
         if (split.length == 1) {
             throw new KaidamaException("Please enter a task to delete");
@@ -48,8 +49,8 @@ public class DeleteCommand extends Command {
         }
         Task task = tasks.getTask(idx);
         tasks.deleteTask(idx);
-        Ui.deleteTaskMsg(task, tasks.getTaskCount());
         storage.updateTaskInFile(tasks.getTaskList());
+        return ui.deleteTaskMsg(task, tasks.getTaskCount());
     }
 
     /**
