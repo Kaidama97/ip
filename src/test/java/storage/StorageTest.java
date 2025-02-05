@@ -1,12 +1,6 @@
 package storage;
 
-import exception.KaidamaException;
-import parser.Parser;
-import task.Deadline;
-import task.Task;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,7 +9,14 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import exception.KaidamaException;
+import parser.Parser;
+import task.Deadline;
+import task.Task;
 
 public class StorageTest {
     private static final Path FILE_PATH = Paths.get("./data/kaidama.txt");

@@ -3,6 +3,7 @@ package kaidama;
 import java.io.IOException;
 
 import command.Command;
+import command.ExitCommand;
 import exception.KaidamaException;
 import parser.Parser;
 import storage.Storage;
@@ -13,16 +14,21 @@ import ui.Ui;
  * The Kaidama class represents the main application that manages tasks.
  */
 public class Kaidama {
-
+    private static final String DATA_PATH = "./data/kaidama.txt";
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-
+    /**
+     * Constructs a Kaidama instance that calls a constructor with the data path as an argument.
+     */
+    public Kaidama() {
+        this(DATA_PATH);
+    }
     /**
      * Constructs a Kaidama instance with the specified file path for task storage.
      * @param filePath the file path to store and retrieve tasks
      */
-    public Kaidama(String filePath) {
+    private Kaidama(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
@@ -34,8 +40,17 @@ public class Kaidama {
 
     }
 
-    public static void main(String[] args) {
-        new Kaidama("./data/kaidama.txt").run();
+    public String getResponse(String userInput) {
+        Command c;
+        try {
+            c = Parser.parseCommand(userInput);
+            if (c instanceof ExitCommand) {
+                return "bye";
+            }
+            return c.execute(tasks, ui, storage);
+        } catch (KaidamaException | IOException e) {
+            return ui.errorMsg(e.getMessage());
+        }
     }
 
     private void run() {
