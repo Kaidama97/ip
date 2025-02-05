@@ -10,7 +10,7 @@ REM delete saved data from previous run
 if exist .\data\Kaidama.txt del .\data\Kaidama.txt
 
 REM compile the code into the bin folder
-javac  -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\ui\*.java
+javac  -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\kaidama\*.java
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
     exit /b 1

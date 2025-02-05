@@ -1,10 +1,9 @@
 package storage;
 
-import kaidama.exception.KaidamaException;
-import kaidama.parser.Parser;
-import kaidama.storage.Storage;
-import kaidama.task.Deadline;
-import kaidama.task.Task;
+import exception.KaidamaException;
+import parser.Parser;
+import task.Deadline;
+import task.Task;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

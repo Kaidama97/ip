@@ -1,4 +1,4 @@
-package kaidama.task;
+package task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -34,7 +34,7 @@ public class Deadline extends Task {
      * @param description The description of the task.
      * @param deadline    The deadline of the task. Date format: dd/MM/yyyy HHmm
      */
-    public Deadline(String description, LocalDateTime deadline){
+    public Deadline(String description, LocalDateTime deadline) {
         super(description);
         this.deadline = deadline;
     }

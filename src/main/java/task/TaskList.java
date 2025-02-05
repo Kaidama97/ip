@@ -1,4 +1,4 @@
-package kaidama.task;
+package task;
 
 import java.util.ArrayList;
 

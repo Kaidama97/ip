@@ -1,11 +1,12 @@
-package kaidama.command;
-
-import kaidama.exception.KaidamaException;
-import kaidama.storage.Storage;
-import kaidama.task.TaskList;
-import kaidama.ui.Ui;
-
+package command;
 import java.io.IOException;
+
+import exception.KaidamaException;
+import storage.Storage;
+import task.TaskList;
+import ui.Ui;
+
+
 
 /**
  * Represents an abstract command in the Kaidama application.

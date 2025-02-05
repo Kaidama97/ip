@@ -1,14 +1,12 @@
-package kaidama.command;
+package command;
 
-import kaidama.exception.KaidamaException;
-import kaidama.storage.Storage;
-import kaidama.task.TaskList;
-import kaidama.ui.Ui;
+import exception.KaidamaException;
+import storage.Storage;
+import task.TaskList;
+import ui.Ui;
 
-import java.io.IOException;
 
 /**
- *
  * Represents a command to display the list of task.
  * It does not modify the task list or interact with the storage, as its primary purpose is to display the list.
  */

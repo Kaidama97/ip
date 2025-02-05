@@ -1,12 +1,12 @@
-package kaidama.command;
-
-import kaidama.exception.KaidamaException;
-import kaidama.storage.Storage;
-import kaidama.task.Task;
-import kaidama.task.TaskList;
-import kaidama.ui.Ui;
+package command;
 
 import java.io.IOException;
+
+import exception.KaidamaException;
+import storage.Storage;
+import task.Task;
+import task.TaskList;
+import ui.Ui;
 
 /**
  * Represents a command to delete a task from the task list.

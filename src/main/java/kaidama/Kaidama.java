@@ -1,21 +1,27 @@
-package kaidama.ui;
-
-import kaidama.command.Command;
-import kaidama.exception.KaidamaException;
-import kaidama.storage.Storage;
-import kaidama.parser.Parser;
-import kaidama.task.TaskList;
+package kaidama;
 
 import java.io.IOException;
 
+import command.Command;
+import exception.KaidamaException;
+import parser.Parser;
+import storage.Storage;
+import task.TaskList;
+import ui.Ui;
 
+/**
+ * The Kaidama class represents the main application that manages tasks.
+ */
 public class Kaidama {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
-
+    /**
+     * Constructs a Kaidama instance with the specified file path for task storage.
+     * @param filePath the file path to store and retrieve tasks
+     */
     public Kaidama(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -32,7 +38,7 @@ public class Kaidama {
         new Kaidama("./data/kaidama.txt").run();
     }
 
-    public void run() {
+    private void run() {
         Ui.initMsg();
         boolean isExit = false;
         while (!isExit) {
@@ -47,6 +53,4 @@ public class Kaidama {
         }
         ui.exitMsg();
     }
-
-
 }

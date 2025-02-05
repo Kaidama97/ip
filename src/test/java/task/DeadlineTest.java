@@ -1,7 +1,5 @@
 package task;
 
-import kaidama.task.Deadline;
-
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;

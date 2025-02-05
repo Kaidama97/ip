@@ -1,11 +1,15 @@
-package kaidama.command;
+package command;
 
-import kaidama.exception.KaidamaException;
-import kaidama.storage.Storage;
-import kaidama.task.Task;
-import kaidama.task.TaskList;
-import kaidama.ui.Ui;
+import exception.KaidamaException;
+import storage.Storage;
+import task.Task;
+import task.TaskList;
+import ui.Ui;
 
+/**
+ * Represents a command to find tasks with keywords from the task list.
+ * find command list down all the words that contained user-defined substring.
+ */
 public class FindCommand extends Command {
     private String input;
 
@@ -25,7 +29,7 @@ public class FindCommand extends Command {
         ui.printOutputString("Here are the matching tasks in your list:");
         for (int i = 1; i <= taskList.getTaskCount(); i++) {
             Task task = taskList.getTask(i);
-            if(task.getDescription().contains(keyword)) {
+            if (task.getDescription().contains(keyword)) {
                 ui.printOutputString(count + "." + task.toString());
                 count++;
             }

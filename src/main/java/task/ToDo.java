@@ -1,5 +1,10 @@
-package kaidama.task;
+package task;
 
+
+/**
+ * Represents a Todo task
+ * This class extends the Task class and adds functionality to handle Todo functions.
+ */
 public class ToDo extends Task {
 
     /**
@@ -41,6 +46,6 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" +  super.toString();
+        return "[T]" + super.toString();
     }
 }

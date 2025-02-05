@@ -1,8 +1,5 @@
 package task;
 
-import kaidama.task.Event;
-import kaidama.task.Task;
-import kaidama.task.TaskList;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
