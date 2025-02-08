@@ -38,9 +38,14 @@ public class AddCommand extends Command {
      * @return A message confirming the addition of the task.
      * @throws KaidamaException If there is an error in the task details or format.
      * @throws IOException      If there is an error writing to the file.
+     * @throws AssertionError if tasks, ui, and storage is null.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "Ui cannot be null";
+        assert storage != null : "Storage cannot be null";
+
         if (input.contains("todo")) {
             setTodo();
         } else if (input.contains("deadline")) {
@@ -69,7 +74,8 @@ public class AddCommand extends Command {
      * @throws KaidamaException If the description of the Todo task is empty.
      */
     private void setTodo() throws KaidamaException {
-        if (input.split(" ").length == 1) {
+        String[] splitTaskInput = input.split(" ");
+        if (splitTaskInput.length == 1) {
             throw new KaidamaException("Please enter a description of the todo task");
         }
         task = new ToDo(input.replace("todo ", ""));

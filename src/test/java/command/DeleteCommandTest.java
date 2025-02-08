@@ -17,10 +17,11 @@ import task.TaskList;
 import ui.Ui;
 
 public class DeleteCommandTest {
+    private static final Path FILE_PATH = Paths.get("./data/kaidama.txt");
     private TaskList taskList;
     private Ui ui;
     private Storage storage;
-    private static final Path FILE_PATH = Paths.get("./data/kaidama.txt");
+
     @BeforeEach
     public void setUp() throws IOException {
         Files.deleteIfExists(FILE_PATH); // Clean up before each test

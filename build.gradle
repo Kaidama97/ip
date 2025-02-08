@@ -2,11 +2,15 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'checkstyle'
 }
-
+checkstyle {
+    toolVersion = '10.2'
+}
 repositories {
     mavenCentral()
 }
+
 
 dependencies {
     String javaFxVersion = '17.0.7'
@@ -43,7 +47,7 @@ test {
 }
 
 application {
-    mainClass.set("kaidama.kaidama.Launcher")
+    mainClass.set("kaidama.Launcher")
 }
 
 shadowJar {
@@ -52,5 +56,6 @@ shadowJar {
 }
 
 run {
+    enableAssertions = true
     standardInput = System.in
 }

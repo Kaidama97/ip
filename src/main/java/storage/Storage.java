@@ -62,7 +62,6 @@ public class Storage {
         for (String line : list) {
             tasks.add(Parser.inputToTask(line));
         }
-
         return tasks;
     }
 
@@ -98,6 +97,7 @@ public class Storage {
      * @throws IOException      If an I/O error occurs.
      */
     public void updateTaskInFile(ArrayList<Task> taskList) throws KaidamaException, IOException {
+        assert taskList != null : "taskList cannot be null";
         BufferedWriter bw = null;
         try {
             bw = new BufferedWriter(new FileWriter(filePath));

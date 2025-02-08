@@ -36,19 +36,23 @@ public class Parser {
      *
      * @param input The string representation of the task from file.
      * @return A Task(Todo, Deadline, Event) object corresponding to the input string.
+     * @throws AssertionError If input from file does not start with T or D or E.
      */
-    public static Task inputToTask(String input) {
+    public static Task inputToTask(String input) throws KaidamaException {
+        assert input.startsWith("T") || input.startsWith("D") || input.startsWith("E")
+                : "Input must start with either 'T' or 'D' or 'E'";
         String[] tokens = input.split("\\|");
         boolean isDone = tokens[1].trim().equals(TASK_DONE_FLAG);
         if (input.startsWith("T")) {
             return new ToDo(isDone, tokens[2].trim());
         } else if (input.startsWith("D")) {
             return new Deadline(isDone, tokens[2].trim(), parseDate(tokens[3].trim()));
-        } else {
+        } else if (input.startsWith("E")) {
             String[] time = tokens[3].split("-");
             return new Event(isDone, tokens[2].trim(), Parser.parseDate(time[0].trim()),
                     Parser.parseDate(time[1].trim()));
         }
+        throw new KaidamaException("Error reading from file");
     }
 
     /**
