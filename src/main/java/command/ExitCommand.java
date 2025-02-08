@@ -13,7 +13,10 @@ import ui.Ui;
 public class ExitCommand extends Command {
 
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws KaidamaException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException {
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "Ui cannot be null";
+        assert storage != null : "Storage cannot be null";
         return ui.exitMsg();
     }
 

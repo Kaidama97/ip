@@ -49,12 +49,17 @@ public class AddCommand extends Command {
      * @return A message confirming the addition of the task.
      * @throws KaidamaException If there is an error in the task details or format.
      * @throws IOException      If there is an error writing to the file.
+     * @throws AssertionError if tasks, ui, and storage is null.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
-        if (input.contains("todo")) {
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "Ui cannot be null";
+        assert storage != null : "Storage cannot be null";
+
+        if (input.startsWith("todo")) {
             setTodo();
-        } else if (input.contains("deadline")) {
+        } else if (input.startsWith("deadline")) {
             setDeadLine();
         } else {
             setEvent();
@@ -80,7 +85,8 @@ public class AddCommand extends Command {
      * @throws KaidamaException If the description of the Todo task is empty.
      */
     private void setTodo() throws KaidamaException {
-        if (input.split(" ").length == 1) {
+        String[] splitTaskInput = input.trim().split(" ");
+        if (splitTaskInput.length == 1) {
             throw new KaidamaException(MISSING_TODO_DESCRIPTION_ERROR);
         }
         task = new ToDo(input.replace("todo ", ""));
@@ -93,7 +99,7 @@ public class AddCommand extends Command {
      * @throws KaidamaException If the description or due date of the Deadline task is invalid.
      */
     private void setDeadLine() throws KaidamaException {
-        input = input.replace("deadline ", "");
+        input = input.replace("deadline ", "").trim();
         String[] split = input.split("/by ");
         String[] dateSplit;
         if (split[0].isEmpty()) {
@@ -113,7 +119,7 @@ public class AddCommand extends Command {
      * @throws KaidamaException If the description, start time, or end time of the Event task is invalid.
      */
     private void setEvent() throws KaidamaException {
-        String msg = input.replace("event ", "");
+        String msg = input.replace("event ", "").trim();
         String[] split = msg.split("/from ");
 
         isValidEventInput(split);
@@ -167,5 +173,4 @@ public class AddCommand extends Command {
             throw new KaidamaException(WRONG_DATE_FORMAT_ERROR);
         }
     }
-
 }

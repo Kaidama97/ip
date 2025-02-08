@@ -38,14 +38,20 @@ public class DeleteCommand extends Command {
      * @return A message confirming the deletion of the task.
      * @throws KaidamaException If there is an error in the task details or format.
      * @throws IOException      If there is an error writing to the file.
+     * @throws AssertionError if tasks, ui, and storage is null.
+     * @throws AssertionError If TaskList is less than 0.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "Ui cannot be null";
+        assert storage != null : "Storage cannot be null";
         String[] split = input.split(" ");
         if (split.length < 2) {
             throw new KaidamaException(MISSING_TASK_NUMBER_ERROR);
         }
         int idx = Integer.parseInt(split[1].trim());
+        assert tasks.getTaskCount() >= 0 : "task should be more than 0";
         if (idx > tasks.getTaskCount()) {
             throw new KaidamaException(INVALID_TASK_NUMBER_ERROR);
         }

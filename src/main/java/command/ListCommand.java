@@ -15,15 +15,19 @@ public class ListCommand extends Command {
     /**
      * Retrieve the list of tasks. Print the taskList with the ui class.
      *
-     * @param taskList   The TaskList contains the task list e.g., it has operations to add/delete tasks in the list.
+     * @param tasks   The TaskList contains the task list e.g., it has operations to add/delete tasks in the list.
      * @param ui      The user interface deals with interactions with the user.
      * @param storage The storage to deals with loading tasks from the file and saving tasks in the file.
      * @return A formatted list of string containing the list of tasks.
      * @throws KaidamaException If the input is invalid or the task index is out of bounds.
+     * @throws AssertionError if tasks, ui, and storage is null.
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) throws KaidamaException {
-        return ui.getList(taskList);
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException {
+        assert tasks != null : "TaskList cannot be null";
+        assert ui != null : "Ui cannot be null";
+        assert storage != null : "Storage cannot be null";
+        return ui.getList(tasks);
     }
 
     /**

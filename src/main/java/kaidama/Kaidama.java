@@ -28,9 +28,11 @@ public class Kaidama {
     }
     /**
      * Constructs a Kaidama instance with the specified file path for task storage.
-     * @param filePath the file path to store and retrieve tasks
+     * @param filePath the file path to store and retrieve tasks.
+     * @throws AssertionError If filePath is null.
      */
     private Kaidama(String filePath) {
+        assert filePath != null : "filePath cannot be null";
         ui = new Ui();
         storage = new Storage(filePath);
         try {

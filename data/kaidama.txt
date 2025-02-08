@@ -1,5 +1,11 @@
-D | 0 | task | 21/10/2023 1800
-D | 0 | task | 20/10/2023 1800
 E | 0 | task | 21/10/2023 1800-21/10/2023 1800
 T | 0 | task
-T | 0 | deadline todotask /by 20/11/2025 1200
+D | 1 | deadlinetask | 10/10/2025 1800
+E | 1 | project meeting | 01/02/2023 0200-01/02/2023 1000
+T | 0 | task 1
+D | 0 | task 2 | 20/12/2025 1000
+T | 0 | task
+T | 0 | task
+T | 0 | deadline todo- task /by 20/11/2103 1020
+D | 0 | task | 20/11/2103 1020
+D | 0 | todo task | 20/11/2021 1800
