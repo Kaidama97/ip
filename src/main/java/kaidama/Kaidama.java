@@ -15,6 +15,8 @@ import ui.Ui;
  */
 public class Kaidama {
     private static final String DATA_PATH = "./data/kaidama.txt";
+    private static final String EXIT_RESPONSE = "bye";
+    private static final String FILE_READ_ERROR = "Error reading file";
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -34,7 +36,7 @@ public class Kaidama {
         try {
             tasks = new TaskList(storage.readFile());
         } catch (KaidamaException | IOException e) {
-            ui.errorMsg("Error reading file");
+            ui.errorMsg(FILE_READ_ERROR);
             tasks = new TaskList();
         }
 
@@ -45,7 +47,7 @@ public class Kaidama {
         try {
             c = Parser.parseCommand(userInput);
             if (c instanceof ExitCommand) {
-                return "bye";
+                return EXIT_RESPONSE;
             }
             return c.execute(tasks, ui, storage);
         } catch (KaidamaException | IOException e) {

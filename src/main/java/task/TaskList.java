@@ -97,12 +97,15 @@ public class TaskList {
      */
     @Override
     public String toString() {
+        StringBuilder out = new StringBuilder();
+        int count;
         String str = "";
         for (int i = 0; i < taskList.size(); i++) {
-            str += "    " + (i + 1) + ".";
-            str += taskList.get(i).toString() + "\n";
+            count = (i + 1);
+            out.append("    ").append(count).append(".");
+            out.append(taskList.get(i).toString()).append("\n");
         }
-        return str;
+        return out.toString();
     }
 
 }

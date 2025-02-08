@@ -43,7 +43,7 @@ test {
 }
 
 application {
-    mainClass.set("kaidama.kaidama.Launcher")
+    mainClass.set("kaidama.Launcher")
 }
 
 shadowJar {
