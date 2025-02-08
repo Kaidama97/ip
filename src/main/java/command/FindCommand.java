@@ -11,6 +11,9 @@ import ui.Ui;
  * find command list down all the words that contained user-defined substring.
  */
 public class FindCommand extends Command {
+    private static final String NO_KEYWORD_ERROR = "Please provide a keyword to search for.";
+    private static final String NO_MATCHING_TASKS_MESSAGE = "No matching tasks found.";
+    private static final String MATCHING_TASKS_HEADER = "Here are the matching tasks in your list:";
     private String input;
 
     public FindCommand(String input) {
@@ -42,17 +45,24 @@ public class FindCommand extends Command {
         assert ui != null : "Ui cannot be null";
         assert storage != null : "Storage cannot be null";
         int count = 1;
-        String outputStr = "";
+        StringBuilder outputStr = new StringBuilder();
+        String[] inputSplit = input.split(" ");
+        if (inputSplit.length < 2) {
+            throw new KaidamaException(NO_KEYWORD_ERROR);
+        }
         String keyword = input.split(" ")[1].trim();
-        outputStr += ui.printOutputString("Here are the matching tasks in your list:") + "\n";
+        outputStr.append(ui.printOutputString(MATCHING_TASKS_HEADER)).append("\n");
         for (int i = 1; i <= tasks.getTaskCount(); i++) {
             Task task = tasks.getTask(i);
             if (task.getDescription().contains(keyword)) {
-                outputStr += ui.printOutputString(count + "." + task.toString()) + "\n";
+                outputStr.append(ui.printOutputString(count + "." + task.toString())).append("\n");
                 count++;
             }
         }
-        return outputStr;
+        if (count == 1) {
+            return ui.printOutputString(NO_MATCHING_TASKS_MESSAGE);
+        }
+        return outputStr.toString();
     }
 
 }

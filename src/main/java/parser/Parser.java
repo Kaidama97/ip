@@ -29,7 +29,8 @@ public class Parser {
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final String TASK_DONE_FLAG = "1"; // Constant for task done status
-
+    private static final String INVALID_INPUT_ERROR =
+            "Please enter a valid input (mark, unmark, todo, deadline or event only)";
     /**
      * Converts a string representation of a task into a Task object.
      * Handle inputs from file
@@ -104,10 +105,10 @@ public class Parser {
             return new MarkCommand(input);
         } else if (input.contains("delete")) {
             return new DeleteCommand(input);
-        } else if (input.contains("deadline") || input.contains("todo") || input.contains("event")) {
+        } else if (input.startsWith("deadline") || input.startsWith("todo") || input.startsWith("event")) {
             return new AddCommand(input);
         } else {
-            throw new KaidamaException("please enter a valid input (mark, unmark, todo, deadline or event only)");
+            throw new KaidamaException(INVALID_INPUT_ERROR);
         }
     }
 }

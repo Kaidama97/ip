@@ -52,13 +52,15 @@ public class Task {
      * @return A string representation of the task for storage.
      */
     public String toStorageString() {
-        String out = "| ";
+        StringBuilder out = new StringBuilder();
+        out.append("| ");
         if (isDone) {
-            out += "1" + " | ";
+            out.append("1");
         } else {
-            out += "0" + " | ";
+            out.append("0");
         }
-        return out + description;
+        out.append(" | ");
+        return out.append(description).toString();
     }
 
     /**
