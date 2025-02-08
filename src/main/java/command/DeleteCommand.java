@@ -14,6 +14,8 @@ import ui.Ui;
  */
 public class DeleteCommand extends Command {
 
+    private static final String MISSING_TASK_NUMBER_ERROR = "Please enter a task to delete.";
+    private static final String INVALID_TASK_NUMBER_ERROR = "No task found with the given number.";
     private String input;
 
 
@@ -40,12 +42,12 @@ public class DeleteCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws KaidamaException, IOException {
         String[] split = input.split(" ");
-        if (split.length == 1) {
-            throw new KaidamaException("Please enter a task to delete");
+        if (split.length < 2) {
+            throw new KaidamaException(MISSING_TASK_NUMBER_ERROR);
         }
         int idx = Integer.parseInt(split[1].trim());
         if (idx > tasks.getTaskCount()) {
-            throw new KaidamaException("No task found");
+            throw new KaidamaException(INVALID_TASK_NUMBER_ERROR);
         }
         Task task = tasks.getTask(idx);
         tasks.deleteTask(idx);

@@ -1,6 +1,7 @@
 package command;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 import exception.KaidamaException;
@@ -17,6 +18,16 @@ import ui.Ui;
  * The AddCommand class represents a command Todo, Deadline, and Event. Add task into the TaskList
  */
 public class AddCommand extends Command {
+
+    private static final String MISSING_TODO_DESCRIPTION_ERROR = "Please enter a description of the todo task.";
+    private static final String MISSING_DEADLINE_DESCRIPTION_ERROR = "Please enter a description of the deadline.";
+    private static final String MISSING_DEADLINE_DATE_ERROR = "Please enter the due date of the task.";
+    private static final String MISSING_EVENT_DESCRIPTION_ERROR = "Please enter a description of the event.";
+    private static final String MISSING_EVENT_DATES_ERROR = "Please enter the event dates of the task.";
+    private static final String MISSING_EVENT_START_TIME_ERROR = "Please enter a start time of the event.";
+    private static final String MISSING_EVENT_END_TIME_ERROR = "Please enter an end time of the event.";
+    private static final String INVALID_DATE_FORMAT_ERROR = "Invalid date format. Please use %s.";
+    private static final String WRONG_DATE_FORMAT_ERROR = "Oh no! Wrong date format!";
     private String input;
     private Task task;
 
@@ -70,7 +81,7 @@ public class AddCommand extends Command {
      */
     private void setTodo() throws KaidamaException {
         if (input.split(" ").length == 1) {
-            throw new KaidamaException("Please enter a description of the todo task");
+            throw new KaidamaException(MISSING_TODO_DESCRIPTION_ERROR);
         }
         task = new ToDo(input.replace("todo ", ""));
 
@@ -86,23 +97,14 @@ public class AddCommand extends Command {
         String[] split = input.split("/by ");
         String[] dateSplit;
         if (split[0].isEmpty()) {
-            throw new KaidamaException("Please enter a description of the deadline");
-        } else if (split.length == 1 || split[1].trim().isEmpty()) {
-            throw new KaidamaException("Please enter the due date of the task");
+            throw new KaidamaException(MISSING_DEADLINE_DESCRIPTION_ERROR);
+        }
+        if (split.length == 1 || split[1].trim().isEmpty()) {
+            throw new KaidamaException(MISSING_DEADLINE_DATE_ERROR);
         }
 
         dateSplit = split[1].split(" ");
-
-        try {
-            String date = dateSplit[0];
-            if (Parser.isDateFormat(date)) {
-                task = new Deadline(split[0].trim(), Parser.parseDate(split[1].trim()));
-            } else {
-                throw new KaidamaException("Invalid date format. Please use dd/MM/yyyy.");
-            }
-        } catch (DateTimeParseException e) {
-            throw new KaidamaException("Oh no wrong date format!");
-        }
+        task = new Deadline(split[0].trim(), parseAndValidateDate(dateSplit, split[1], "dd/MM/yyyy"));
     }
 
     /**
@@ -111,36 +113,59 @@ public class AddCommand extends Command {
      * @throws KaidamaException If the description, start time, or end time of the Event task is invalid.
      */
     private void setEvent() throws KaidamaException {
-
         String msg = input.replace("event ", "");
         String[] split = msg.split("/from ");
+
+        isValidEventInput(split);
+
+        String[] toSplit = split[1].trim().split("/to ");
+        String[] startDate = toSplit[0].trim().split(" ");
+        String[] endDate = toSplit[1].trim().split(" ");
+
+        task = new Event(
+                split[0].trim(),
+                parseAndValidateDate(startDate, toSplit[0].trim(), "dd/MM/yyyy"),
+                parseAndValidateDate(endDate, toSplit[1].trim(), "dd/MM/yyyy")
+        );
+
+    }
+
+    private boolean isValidEventInput(String[] split) throws KaidamaException {
         if (split[0].trim().isEmpty()) {
-            throw new KaidamaException("Please enter a description of the event");
+            throw new KaidamaException(MISSING_EVENT_DESCRIPTION_ERROR);
         }
         if (split.length == 1) {
-            throw new KaidamaException("Please enter the event dates of the task");
+            throw new KaidamaException(MISSING_EVENT_DATES_ERROR);
         }
         String[] toSplit = split[1].split("/to ");
         if (toSplit[0].trim().isEmpty()) {
-            throw new KaidamaException("Please enter a start time of the event");
+            throw new KaidamaException(MISSING_EVENT_START_TIME_ERROR);
         }
         if (toSplit.length == 1 || toSplit[1].trim().isEmpty()) {
-            throw new KaidamaException("Please enter a end time of the event");
+            throw new KaidamaException(MISSING_EVENT_END_TIME_ERROR);
         }
+        return true;
+    }
 
+    /**
+     * Parses and validates a date string.
+     *
+     * @param dateSplit The date string to parse.
+     * @param dateFormat The expected date format.
+     * @return The parsed date string.
+     * @throws KaidamaException If the date string is invalid.
+     */
+    private LocalDateTime parseAndValidateDate(String[] dateSplit, String date, String dateFormat)
+            throws KaidamaException {
         try {
-            String[] dateFromSplit = toSplit[0].trim().split(" ");
-            String[] dateToSplit = toSplit[1].trim().split(" ");
-
-            if (Parser.isDateFormat(dateFromSplit[0]) && Parser.isDateFormat(dateToSplit[0])) {
-                task = new Event(split[0].trim(), Parser.parseDate(toSplit[0].trim()),
-                        Parser.parseDate(toSplit[1].trim()));
+            if (Parser.isDateFormat(dateSplit[0].trim())) {
+                return Parser.parseDate(date);
             } else {
-                throw new KaidamaException("Invalid date format. Please use yyyy-MM-dd.");
+                throw new KaidamaException(String.format(INVALID_DATE_FORMAT_ERROR, dateFormat));
             }
         } catch (DateTimeParseException e) {
-            throw new KaidamaException("Oh no wrong date format!");
+            throw new KaidamaException(WRONG_DATE_FORMAT_ERROR);
         }
-
     }
+
 }
