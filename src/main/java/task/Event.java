@@ -1,5 +1,7 @@
 package task;
 
+import exception.KaidamaException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -38,8 +40,8 @@ public class Event extends Task {
      * @param from    The start time of the task. Date format: dd/MM/yyyy HHmm
      * @param to      The end time of the task. Date format: dd/MM/yyyy HHmm
      */
-    public Event(boolean isDone, String description, LocalDateTime from, LocalDateTime to) {
-        super(isDone, description);
+    public Event(boolean isDone, String description, LocalDateTime from, LocalDateTime to, String priority) {
+        super(isDone, description, priority);
         this.from = from;
         this.to = to;
     }
@@ -65,7 +67,17 @@ public class Event extends Task {
         return "E " + super.toStorageString() + " | " + formatDateForStorage(this.from) + "-"
                 + formatDateForStorage(this.to);
     }
-
+    /**
+     * Sets the priority of the task.
+     * The priority can be one of the following values: "low", "medium", or "high".
+     *
+     * @param priority the priority level to set; must be "low", "medium", or "high"
+     * @throws KaidamaException if the provided priority is not one of the valid values
+     */
+    @Override
+    public void setPriority(String priority) throws KaidamaException {
+        super.setPriority(priority);
+    }
     /**
      * Converts the task into a string format suitable for display.
      *
