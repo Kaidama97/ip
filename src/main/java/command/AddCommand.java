@@ -99,8 +99,8 @@ public class AddCommand extends Command {
      * @throws KaidamaException If the description or due date of the Deadline task is invalid.
      */
     private void setDeadLine() throws KaidamaException {
-        input = input.replace("deadline ", "").trim();
-        String[] split = input.split("/by ");
+        String[] splitTaskInput = input.trim().split(" ", 2);
+        String[] split = splitTaskInput[1].trim().split("/by ");
         String[] dateSplit;
         if (split[0].isEmpty()) {
             throw new KaidamaException(MISSING_DEADLINE_DESCRIPTION_ERROR);
@@ -110,7 +110,7 @@ public class AddCommand extends Command {
         }
 
         dateSplit = split[1].split(" ");
-        task = new Deadline(split[0].trim(), parseAndValidateDate(dateSplit, split[1], "dd/MM/yyyy"));
+        task = new Deadline(split[0].trim(), parseAndValidateDate(dateSplit, split[1], "dd/MM/yyyy HHmm"));
     }
 
     /**
@@ -119,8 +119,8 @@ public class AddCommand extends Command {
      * @throws KaidamaException If the description, start time, or end time of the Event task is invalid.
      */
     private void setEvent() throws KaidamaException {
-        String msg = input.replace("event ", "").trim();
-        String[] split = msg.split("/from ");
+        String[] splitTaskInput = input.trim().split(" ", 2);
+        String[] split = splitTaskInput[1].trim().split("/from ");
 
         isValidEventInput(split);
 
@@ -130,8 +130,8 @@ public class AddCommand extends Command {
 
         task = new Event(
                 split[0].trim(),
-                parseAndValidateDate(startDate, toSplit[0].trim(), "dd/MM/yyyy"),
-                parseAndValidateDate(endDate, toSplit[1].trim(), "dd/MM/yyyy")
+                parseAndValidateDate(startDate, toSplit[0].trim(), "dd/MM/yyyy HHmm"),
+                parseAndValidateDate(endDate, toSplit[1].trim(), "dd/MM/yyyy HHmm")
         );
 
     }

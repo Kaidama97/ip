@@ -12,6 +12,7 @@ import command.ExitCommand;
 import command.FindCommand;
 import command.ListCommand;
 import command.MarkCommand;
+import command.SetPriorityCommand;
 import command.UnmarkCommand;
 import exception.KaidamaException;
 import task.Deadline;
@@ -45,13 +46,13 @@ public class Parser {
         String[] tokens = input.split("\\|");
         boolean isDone = tokens[1].trim().equals(TASK_DONE_FLAG);
         if (input.startsWith("T")) {
-            return new ToDo(isDone, tokens[2].trim());
+            return new ToDo(isDone, tokens[2].trim(), tokens[3].trim());
         } else if (input.startsWith("D")) {
-            return new Deadline(isDone, tokens[2].trim(), parseDate(tokens[3].trim()));
+            return new Deadline(isDone, tokens[2].trim(), parseDate(tokens[4].trim()), tokens[3].trim());
         } else if (input.startsWith("E")) {
-            String[] time = tokens[3].split("-");
+            String[] time = tokens[4].split("-");
             return new Event(isDone, tokens[2].trim(), Parser.parseDate(time[0].trim()),
-                    Parser.parseDate(time[1].trim()));
+                    Parser.parseDate(time[1].trim()), tokens[3].trim());
         }
         throw new KaidamaException("Error reading from file");
     }
@@ -107,6 +108,8 @@ public class Parser {
             return new DeleteCommand(input);
         } else if (input.startsWith("deadline") || input.startsWith("todo") || input.startsWith("event")) {
             return new AddCommand(input);
+        } else if (input.contains("set priority")) {
+            return new SetPriorityCommand(input);
         } else {
             throw new KaidamaException(INVALID_INPUT_ERROR);
         }
