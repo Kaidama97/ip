@@ -44,6 +44,12 @@ public class Ui {
                 + TAB_SEPARATOR + TAB_SEPARATOR + task.toString();
     }
 
+    public static String setPriorityMsg(Task task) {
+        return TAB_SEPARATOR + "I've set this task's priority level to:\n"
+                + TAB_SEPARATOR + TAB_SEPARATOR + task.toString();
+    }
+
+
     public static String addNewTask(Task task, int taskCount) {
         return TAB_SEPARATOR + "Got it. I've added this task:\n"
                 + TAB_SEPARATOR + TAB_SEPARATOR + task.toString() + "\n"

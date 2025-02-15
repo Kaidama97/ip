@@ -1,5 +1,7 @@
 package task;
 
+import exception.KaidamaException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -22,8 +24,8 @@ public class Deadline extends Task {
      * @param description The description of the task.
      * @param deadline    The deadline of the task. Date format: dd/MM/yyyy HHmm
      */
-    public Deadline(boolean isDone, String description, LocalDateTime deadline) {
-        super(isDone, description);
+    public Deadline(boolean isDone, String description, LocalDateTime deadline, String priority) {
+        super(isDone, description, priority);
         this.deadline = deadline;
     }
 
@@ -49,7 +51,17 @@ public class Deadline extends Task {
     private String formatDateForStorage(LocalDateTime date) {
         return date.format(STORAGE_DATE_FORMATTER);
     }
-
+    /**
+     * Sets the priority of the task.
+     * The priority can be one of the following values: "low", "medium", or "high".
+     *
+     * @param priority the priority level to set; must be "low", "medium", or "high"
+     * @throws KaidamaException if the provided priority is not one of the valid values
+     */
+    @Override
+    public void setPriority(String priority) throws KaidamaException {
+        super.setPriority(priority);
+    }
     /**
      * Converts the task into a string format suitable for storage.
      *

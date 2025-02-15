@@ -66,7 +66,7 @@ public class Storage {
     }
 
     /**
-     * Append a single task to the last line of the file in the predefined format
+     * Append a single task to the last line of the file in the predefined format.
      *
      * @param line String representation of the task data to append to the file.
      * @throws KaidamaException if there is any error when writing to the file

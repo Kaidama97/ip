@@ -26,8 +26,6 @@ public abstract class Command {
      */
     public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws KaidamaException,
             IOException;
-
-
     /**
      * Determines whether the command signals the application to exit.
      *
