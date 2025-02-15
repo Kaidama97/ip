@@ -1,6 +1,1 @@
-T | 0 | task | HIGH
-D | 0 | task | MEDIUM | 12/12/2024 1800
-E | 0 | event task | MEDIUM | 20/12/2024 1700-20/12/2024 1800
-D | 0 | task | HIGH | 20/12/2023 1800
-D | 0 | task | MEDIUM | 20/12/2023 1800
-E | 1 | task | MEDIUM | 20/12/2023 1800-20/12/2023 1900
+E | 0 | event | MEDIUM | 20/12/2024 1800-20/12/2024 1900

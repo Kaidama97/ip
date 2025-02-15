@@ -28,6 +28,8 @@ public class AddCommand extends Command {
     private static final String MISSING_EVENT_END_TIME_ERROR = "Please enter an end time of the event.";
     private static final String INVALID_DATE_FORMAT_ERROR = "Invalid date format. Please use %s.";
     private static final String WRONG_DATE_FORMAT_ERROR = "Oh no! Wrong date format!";
+    private static final String EXPECTED_DATE_FORMAT = " 16/02/2025 2359";
+    private static final String INVALID_EVENT_END_DATE_ERROR = "Invalid end date, end date should be after start date.";
     private String input;
     private Task task;
 
@@ -150,7 +152,15 @@ public class AddCommand extends Command {
         if (toSplit.length == 1 || toSplit[1].trim().isEmpty()) {
             throw new KaidamaException(MISSING_EVENT_END_TIME_ERROR);
         }
-        return true;
+        if (isValidEndDate(toSplit)) {
+            return true;
+        }
+        throw new KaidamaException(INVALID_EVENT_END_DATE_ERROR);
+    }
+    private boolean isValidEndDate(String[] dates) {
+        LocalDateTime start = Parser.parseDate(dates[0].trim());
+        LocalDateTime end = Parser.parseDate(dates[1].trim());
+        return end.isAfter(start);
     }
 
     /**
@@ -167,7 +177,8 @@ public class AddCommand extends Command {
             if (Parser.isDateFormat(dateSplit[0].trim())) {
                 return Parser.parseDate(date);
             } else {
-                throw new KaidamaException(String.format(INVALID_DATE_FORMAT_ERROR, dateFormat));
+                throw new KaidamaException(String.format(INVALID_DATE_FORMAT_ERROR, dateFormat,
+                        EXPECTED_DATE_FORMAT));
             }
         } catch (DateTimeParseException e) {
             throw new KaidamaException(WRONG_DATE_FORMAT_ERROR);

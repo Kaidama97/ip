@@ -22,6 +22,7 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
+            stage.setTitle("Kaidama Chatbot");
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setKaidama(kaidama);
             stage.show();
