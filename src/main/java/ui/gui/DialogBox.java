@@ -35,6 +35,15 @@ public class DialogBox extends HBox {
 
         dialog.setText(text);
         displayPicture.setImage(img);
+        applyRoundedEdge();
+    }
+
+    private void applyRoundedEdge() {
+        double radius = Math.min(displayPicture.getFitWidth(), displayPicture.getFitHeight()) / 2; // Ensures a perfect circle
+        javafx.scene.shape.Circle clip = new javafx.scene.shape.Circle(radius);
+        clip.setCenterX(displayPicture.getFitWidth() / 2);
+        clip.setCenterY(displayPicture.getFitHeight() / 2);
+        displayPicture.setClip(clip);
     }
 
     /**

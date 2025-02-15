@@ -25,15 +25,17 @@ public class MainWindow extends AnchorPane {
 
     private Kaidama kaidama;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image kaidamaImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
+    private Image kaidamaImage = new Image(this.getClass().getResourceAsStream("/images/Rick.png"));
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    /** Injects the Kaidama instance */
+    /**
+     * Create a Kaidama instance
+     * */
     public void setKaidama(Kaidama k) {
         this.kaidama = k;
         String response = kaidama.getInitMessage();
