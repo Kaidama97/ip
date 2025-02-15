@@ -36,6 +36,11 @@ public class MainWindow extends AnchorPane {
     /** Injects the Kaidama instance */
     public void setKaidama(Kaidama k) {
         this.kaidama = k;
+        String response = kaidama.getInitMessage();
+        dialogContainer.getChildren().addAll(
+                DialogBox.getKaidamaDialog(response, kaidamaImage)
+        );
+        userInput.clear();
     }
 
     /**

@@ -57,6 +57,10 @@ public class Kaidama {
         }
     }
 
+    public String getInitMessage() {
+        return Ui.initMsg();
+    }
+
     private void run() {
         Ui.initMsg();
         boolean isExit = false;
