@@ -37,16 +37,17 @@ public class StorageTest {
     @Test
     public void appendNewTasktoFile_validTask_taskAppended() throws IOException, KaidamaException {
         Storage storage = new Storage("./data/kaidama.txt");
-        String initialData = "T | 1 | Sample Todo";
+        String initialData = "T | 1 | MEDIUM | Sample Todo";
         storage.writeFile(initialData);
         LocalDateTime dateTime = Parser.parseDate("03/02/2019 1800");
-        Task deadline = new Deadline(false, "test deadline", dateTime);
+        String priority = "HIGH";
+        Task deadline = new Deadline(false, "test deadline", dateTime, priority);
 
         storage.writeFile(deadline.toStorageString());
 
         List<String> lines = Files.readAllLines(FILE_PATH);
         assertEquals(2, lines.size());
-        assertEquals("T | 1 | Sample Todo", lines.get(0));
-        assertEquals("D | 0 | test deadline | 03/02/2019 1800", lines.get(1));
+        assertEquals("T | 1 | MEDIUM | Sample Todo", lines.get(0));
+        assertEquals("D | 0 | test deadline | HIGH | 03/02/2019 1800", lines.get(1));
     }
 }

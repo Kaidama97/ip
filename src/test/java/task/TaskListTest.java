@@ -17,7 +17,8 @@ public class TaskListTest {
         LocalDateTime fromDateTime = LocalDateTime.parse(fromDateTimeStr, formatter);
         LocalDateTime toDateTime = LocalDateTime.parse(toDateTimeStr, formatter);
         TaskList taskList = new TaskList();
-        Task task = new Event(false, "Test Event", fromDateTime, toDateTime);
+        String priority = "MEDIUM";
+        Task task = new Event(false, "Test Event", fromDateTime, toDateTime, priority);
         taskList.addTask(task);
         assertEquals(1, taskList.getTaskCount());
         assertEquals(task, taskList.getTask(1));
