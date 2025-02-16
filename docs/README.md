@@ -3,8 +3,8 @@
 ![Ui.png](Ui.png)
 
 Kaidama is a Personal Assistant Chatbot that helps users keep track of various thing using the
-_Command Line Interface (CLI)_
---
+Command Line Interface (CLI)
+---
 ## Table of Contents
 - [Add Todo](#add-todo)
 - [Add Deadline](#add-deadline)
@@ -41,6 +41,7 @@ To add a task with a deadline, use this format:
 
 **Example:**  
 `deadline Submit assignment /by 20/02/2025 2359`
+
 ---
 
 ## Add Event
@@ -145,6 +146,7 @@ Edit the data file only if you are confident that you can update it correctly.
 ---
 Some of the JavaDocs comments were generated with ChatGPT and DeepSeek.
 Command Summary in README.md is generated with ChatGPT.
+
 ---
 
 # Command Summary
