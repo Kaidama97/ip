@@ -63,8 +63,12 @@ public class Parser {
      * @param date The date string to parse.
      * @return A LocalDateTime object representing the parsed date format (dd/MM/yyyy HHmm).
      */
-    public static LocalDateTime parseDate(String date) {
-        return LocalDateTime.parse(date, DATE_TIME_FORMATTER);
+    public static LocalDateTime parseDate(String date) throws KaidamaException {
+        try {
+            return LocalDateTime.parse(date, DATE_TIME_FORMATTER);
+        } catch (DateTimeParseException e) {
+            throw new KaidamaException("Date time format should follow: dd/MM/yyyy HHmm");
+        }
     }
 
 
@@ -85,7 +89,7 @@ public class Parser {
     }
 
     /**
-     * Parses a user input string into a Command object. Either bye, list, mark,
+     * Parses a user input string into a Command object. Either bye, list, mark, set priority,
      * unmark, delete,deadline, todo or event.
      *
      * @param input The user input string.

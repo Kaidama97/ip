@@ -157,7 +157,7 @@ public class AddCommand extends Command {
         }
         throw new KaidamaException(INVALID_EVENT_END_DATE_ERROR);
     }
-    private boolean isValidEndDate(String[] dates) {
+    private boolean isValidEndDate(String[] dates) throws KaidamaException {
         LocalDateTime start = Parser.parseDate(dates[0].trim());
         LocalDateTime end = Parser.parseDate(dates[1].trim());
         return end.isAfter(start);
