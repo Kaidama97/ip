@@ -20,6 +20,9 @@ import task.Task;
 
 public class StorageTest {
     private static final Path FILE_PATH = Paths.get("./data/kaidama.txt");
+    //@@author lesterlimjj-reused
+    //solution reused from lesterlimjj ip storageTest.java
+    //implement minor modifications to fit my requirment
     @BeforeEach
     public void setUp() throws IOException {
         Files.deleteIfExists(FILE_PATH); // Clean up before each test
@@ -27,13 +30,12 @@ public class StorageTest {
             Files.createDirectory(FILE_PATH.getParent());
         }
     }
-
+    //@author
     @AfterEach
     public void clearAll() throws IOException {
 
         Files.deleteIfExists(FILE_PATH); // Clean up after each test
     }
-
     @Test
     public void appendNewTasktoFile_validTask_taskAppended() throws IOException, KaidamaException {
         Storage storage = new Storage("./data/kaidama.txt");
