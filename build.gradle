@@ -54,6 +54,7 @@ application {
 shadowJar {
     archiveBaseName = "kaidama"
     archiveClassifier = null
+    archiveFileName = 'kaidama.jar'
 }
 
 run {

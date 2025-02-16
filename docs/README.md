@@ -29,7 +29,7 @@ To add a new task without a deadline or event, use the following format:
 `todo <DESCRIPTION>`
 
 **Example:**  
-`todo Buy groceries`
+`todo read book`
 
 ---
 
@@ -51,7 +51,7 @@ To add an event that spans a period of time:
 `event <DESCRIPTION> /from <START DATE> /to <END DATE>`
 
 **Example:**  
-`event Project meeting /from 22/02/2025 /to 23/02/2025`
+`event Project meeting /from 20/02/2025 0800 /to 20/02/2025 2359`
 
 ---
 
