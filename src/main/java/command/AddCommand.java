@@ -26,9 +26,9 @@ public class AddCommand extends Command {
     private static final String MISSING_EVENT_DATES_ERROR = "Please enter the event dates of the task.";
     private static final String MISSING_EVENT_START_TIME_ERROR = "Please enter a start time of the event.";
     private static final String MISSING_EVENT_END_TIME_ERROR = "Please enter an end time of the event.";
-    private static final String INVALID_DATE_FORMAT_ERROR = "Invalid date format. Please use %s.";
+    private static final String INVALID_DATE_FORMAT_ERROR = "Invalid date format. Please use %s.%s";
     private static final String WRONG_DATE_FORMAT_ERROR = "Oh no! Wrong date format!";
-    private static final String EXPECTED_DATE_FORMAT = " 16/02/2025 2359";
+    private static final String EXPECTED_DATE_FORMAT = " Example: 16/02/2025 2359";
     private static final String INVALID_EVENT_END_DATE_ERROR = "Invalid end date, end date should be after start date.";
     private String input;
     private Task task;
@@ -181,7 +181,7 @@ public class AddCommand extends Command {
                         EXPECTED_DATE_FORMAT));
             }
         } catch (DateTimeParseException e) {
-            throw new KaidamaException(WRONG_DATE_FORMAT_ERROR);
+            throw new KaidamaException(WRONG_DATE_FORMAT_ERROR + EXPECTED_DATE_FORMAT);
         }
     }
 }
